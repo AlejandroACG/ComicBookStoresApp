@@ -20,4 +20,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ComicBookStoresApp"
-include ':app'
+include(":app")
+ 
