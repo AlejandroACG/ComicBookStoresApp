@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.svalero.comicbookstoresapp.R;
 
-public class MapActivity extends AppCompatActivity {
+public class MapView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
