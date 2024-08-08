@@ -4,4 +4,7 @@
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
     <string name="add_review">Añadir Reseña</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="register">Registrarse</string>
 </resources>

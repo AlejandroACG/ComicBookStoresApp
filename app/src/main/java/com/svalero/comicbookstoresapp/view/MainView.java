@@ -1,6 +1,9 @@
 package com.svalero.comicbookstoresapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -20,5 +23,15 @@ public class MainView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void goLogin(View view) {
+        Intent intent = new Intent(this, LoginView.class);
+        startActivity(intent);
+    }
+
+    public void goRegister(View view) {
+        Intent intent = new Intent(this, RegisterView.class);
+        startActivity(intent);
     }
 }
