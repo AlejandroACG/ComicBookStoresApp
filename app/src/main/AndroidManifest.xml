@@ -25,7 +25,7 @@
             android:name=".view.UserProfileView"
             android:exported="false" />
         <activity
-            android:name=".view.MainView"
+            android:name=".view.StoreDetailsView"
             android:exported="false" />
         <activity
             android:name=".view.RegisterView"
@@ -34,7 +34,7 @@
             android:name=".view.LoginView"
             android:exported="false" />
         <activity
-            android:name=".view.StoreDetailsView"
+            android:name=".view.MainView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,13 +9,17 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private Float latitude;
+    private Float longitude;
 
-    public User(Long id, List<Review> reviews, String username, String email, String password) {
+    public User(Long id, List<Review> reviews, String username, String email, String password, Float latitude, Float longitude) {
         this.id = id;
         this.reviews = reviews;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Long getId() {
@@ -56,5 +60,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
     }
 }
