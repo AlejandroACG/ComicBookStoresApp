@@ -5,14 +5,14 @@ import java.util.List;
 
 public class User {
     private Long id;
-    private List<Review> storeReviews = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
     private String username;
     private String email;
     private String password;
 
-    public User(Long id, List<Review> storeReviews, String username, String email, String password) {
+    public User(Long id, List<Review> reviews, String username, String email, String password) {
         this.id = id;
-        this.storeReviews = storeReviews;
+        this.reviews = reviews;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -26,12 +26,12 @@ public class User {
         this.id = id;
     }
 
-    public List<Review> getStoreReviews() {
-        return storeReviews;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setStoreReviews(List<Review> storeReviews) {
-        this.storeReviews = storeReviews;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public String getUsername() {

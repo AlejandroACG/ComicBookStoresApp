@@ -7,9 +7,9 @@ public class Review {
     private String title;
     private String content;
     private Float rating;
-    private LocalDate date;
+    private String date;
 
-    public Review(Long id, String title, String content, float rating, LocalDate date) {
+    public Review(Long id, String title, String content, float rating, String date) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -49,11 +49,11 @@ public class Review {
         this.rating = rating;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

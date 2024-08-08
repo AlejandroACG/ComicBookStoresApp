@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Store {
     private Long id;
-    private List<Review> storeReviews = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
     private String name;
     private String address;
     private Float latitude;
@@ -14,9 +14,9 @@ public class Store {
     private String email;
     private String website;
 
-    public Store(Long id, List<Review> storeReviews, String name, String address, Float latitude, Float longitude, String phone, String email, String website) {
+    public Store(Long id, List<Review> reviews, String name, String address, Float latitude, Float longitude, String phone, String email, String website) {
         this.id = id;
-        this.storeReviews = storeReviews;
+        this.reviews = reviews;
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -34,12 +34,12 @@ public class Store {
         this.id = id;
     }
 
-    public List<Review> getStoreReviews() {
-        return storeReviews;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setStoreReviews(List<Review> storeReviews) {
-        this.storeReviews = storeReviews;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public String getName() {
