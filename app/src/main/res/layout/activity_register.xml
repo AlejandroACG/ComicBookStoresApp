@@ -57,4 +57,25 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="389dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_constraint">
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mapbox_cameraBearing="0.0"
+            app:mapbox_cameraPitch="0.0"
+            app:mapbox_cameraTargetLat="50.697278"
+            app:mapbox_cameraTargetLng="7.156028"
+            app:mapbox_cameraZoom="12.0" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

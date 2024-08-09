@@ -19,29 +19,40 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".view.MapView"
-            android:exported="false" />
+            android:name=".view.StoresMapView"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.EditReviewView"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.AddReviewView"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.UserProfileView"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.StoreDetailsView"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.RegisterView"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.LoginView"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.MainView"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

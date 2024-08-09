@@ -14,13 +14,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.svalero.comicbookstoresapp.R;
 
-public class MapView extends AppCompatActivity {
+public class StoresMapView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_stores_map);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -37,7 +37,7 @@ public class MapView extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_map) {
-            Intent intent = new Intent(this, MapView.class);
+            Intent intent = new Intent(this, StoresMapView.class);
             startActivity(intent);
             return true;
         }

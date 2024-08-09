@@ -10,4 +10,5 @@
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
     <string name="email">Correo electrónico</string>
+    <string name="here">Aquí</string>
 </resources>
