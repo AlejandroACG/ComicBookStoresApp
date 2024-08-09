@@ -25,12 +25,12 @@ public class MainView extends AppCompatActivity {
         });
     }
 
-    public void goLogin(View view) {
+    public void navigateToLogin(View view) {
         Intent intent = new Intent(this, LoginView.class);
         startActivity(intent);
     }
 
-    public void goRegister(View view) {
+    public void navigateToRegister(View view) {
         Intent intent = new Intent(this, RegisterView.class);
         startActivity(intent);
     }

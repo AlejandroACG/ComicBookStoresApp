@@ -1,14 +1,12 @@
 package com.svalero.comicbookstoresapp.model;
 
 import android.util.Log;
-
 import com.svalero.comicbookstoresapp.api.ReviewApi;
 import com.svalero.comicbookstoresapp.api.ReviewApiInterface;
 import com.svalero.comicbookstoresapp.contract.StoreDetailsContract;
 import com.svalero.comicbookstoresapp.domain.Review;
 import java.util.List;
 import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

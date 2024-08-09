@@ -22,6 +22,14 @@ public class User {
         this.longitude = longitude;
     }
 
+    public User(String username, String email, String password, Float latitude, Float longitude) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Long getId() {
         return id;
     }

@@ -10,4 +10,6 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="here">Here</string>
+    <string name="unexpected_error">Unexpected Error</string>
+    <string name="error_user_register">User Couldn\'t Be Registered</string>
 </resources>

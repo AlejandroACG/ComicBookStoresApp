@@ -14,7 +14,7 @@ public interface ReviewApiInterface {
     Call<List<Review>> getReviews();
 
     @POST("store-reviews")
-    Call<Review> addReview(@Body Review review);
+    Call<Review> createReview(@Body Review review);
 
     @DELETE("store-review/{id}")
     Call<Void> deleteReview(@Path("id") Long id);

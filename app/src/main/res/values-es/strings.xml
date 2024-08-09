@@ -11,4 +11,6 @@
     <string name="password">Contraseña</string>
     <string name="email">Correo electrónico</string>
     <string name="here">Aquí</string>
+    <string name="unexpected_error">Error inesperado</string>
+    <string name="error_user_register">No se pudo registrar al usuario</string>
 </resources>

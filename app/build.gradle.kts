@@ -39,4 +39,5 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.android)
+    implementation(libs.play.services.location)
 }
