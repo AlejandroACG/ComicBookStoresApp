@@ -1,8 +1,10 @@
 package com.svalero.comicbookstoresapp.model;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.util.Log;
-
+import androidx.core.content.ContextCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
@@ -18,10 +20,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterModel implements RegisterContract.Model {
-    private FusedLocationProviderClient fusedLocationClient;
+    private final FusedLocationProviderClient fusedLocationClient;
+    private final Context context;
 
     public RegisterModel(Context context) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+        this.context = context;
     }
 
     @Override
@@ -58,14 +62,19 @@ public class RegisterModel implements RegisterContract.Model {
 
     @Override
     public void getCurrentLocation(OnLocationReceivedListener listener) {
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(location -> {
-                    if (location != null) {
-                        listener.onLocationReceived(location.getLatitude(), location.getLongitude());
-                    } else {
-                        listener.onLocationError("Location is null");
-                    }
-                })
-                .addOnFailureListener(e -> listener.onLocationError(e.getMessage()));
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(location -> {
+                        if (location != null) {
+                            listener.onLocationReceived(location.getLatitude(), location.getLongitude());
+                        } else {
+                            listener.onLocationError("Unable to retrieve location.");
+                        }
+                    })
+                    .addOnFailureListener(e -> listener.onLocationError(e.getMessage()));
+        } else {
+            listener.onLocationError("Location permission not granted.");
+        }
     }
 }

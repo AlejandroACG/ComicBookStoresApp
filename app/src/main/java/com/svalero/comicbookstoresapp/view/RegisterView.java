@@ -1,11 +1,14 @@
 package com.svalero.comicbookstoresapp.view;
 
 import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.mapbox.geojson.Point;
+import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
 import com.mapbox.maps.extension.style.layers.properties.generated.IconAnchor;
@@ -110,27 +114,43 @@ public class RegisterView extends AppCompatActivity implements RegisterContract.
                 presenter.requestLocation();
             } else {
                 showPermissionDeniedError();
+                setupMapWithoutGPS();
             }
         }
     }
 
     @Override
     public void showPermissionDeniedError() {
-//        new AlertDialog.Builder(this)
-//                .setTitle(R.string.error)
-//                .setMessage(R.string.permission_denied_message)
-//                .setPositiveButton(android.R.string.ok, null)
-//                .show();
+        Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showLocation(double latitude, double longitude) {
+        setStartingMap(latitude, longitude, "", 12);
+    }
+
+    @Override
+    public void showLocationError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    public void setupMapWithoutGPS() {
+        setStartingMap(0, 0, getString(R.string.no_gps_signal), 2);
+    }
+
+    private void setStartingMap(double latitude, double longitude, String message, double zoom) {
         currentPoint = Point.fromLngLat(longitude, latitude);
-        pointAnnotationManager.deleteAll();
-        addMarker(latitude, longitude, "");
+        addMarker(latitude, longitude, message);
+        mapView.getMapboxMap().setCamera(
+                new CameraOptions.Builder()
+                        .center(Point.fromLngLat(longitude, latitude))
+                        .zoom(zoom)
+                        .build()
+        );
     }
 
     private void addMarker(double latitude, double longitude, String title) {
+        pointAnnotationManager.deleteAll();
         PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
                 .withPoint(Point.fromLngLat(longitude, latitude))
                 .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.red_marker_foreground))
@@ -145,7 +165,6 @@ public class RegisterView extends AppCompatActivity implements RegisterContract.
 
     @Override
     public boolean onMapClick(@NonNull Point point) {
-        pointAnnotationManager.deleteAll();
         currentPoint = point;
         addMarker(point.latitude(), point.longitude(), "");
         return false;
@@ -160,11 +179,20 @@ public class RegisterView extends AppCompatActivity implements RegisterContract.
     }
 
     @Override
-    public void showSaveSuccessDialog(String message, User user) {
+    public void showSaveSuccessDialog(User user, String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.success)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                    navigateToStoresMap(user);
+                })
+                .show();
     }
 
     @Override
     public void navigateToStoresMap(User user) {
+        Intent intent = new Intent(this, StoresMapView.class);
+        startActivity(intent);
     }
 
     @Override

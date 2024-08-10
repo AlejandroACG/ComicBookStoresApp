@@ -1,7 +1,9 @@
 package com.svalero.comicbookstoresapp.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -11,6 +13,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.svalero.comicbookstoresapp.R;
+
+import java.util.Objects;
 
 public class MainView extends AppCompatActivity {
     @Override

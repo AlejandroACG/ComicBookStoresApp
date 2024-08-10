@@ -13,4 +13,9 @@
     <string name="here">Aquí</string>
     <string name="unexpected_error">Error inesperado</string>
     <string name="error_user_register">No se pudo registrar al usuario</string>
+    <string name="permission_denied">No se ha autorizado el acceso a la localización</string>
+    <string name="error_empty_fields">Por favor, rellene todos los campos</string>
+    <string name="no_gps_signal">No hay señal de GPS</string>
+    <string name="registered_successfully">" registrado con éxito"</string>
+    <string name="success">Éxito</string>
 </resources>

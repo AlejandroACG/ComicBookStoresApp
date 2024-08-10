@@ -18,11 +18,12 @@ public interface RegisterContract {
     }
 
     interface View {
-        void showSaveSuccessDialog(String message, User user);
+        void showSaveSuccessDialog(User user, String message);
         void navigateToStoresMap(User user);
         void showSaveErrorDialog(String message);
         void showPermissionDeniedError();
         void showLocation(double latitude, double longitude);
+        void showLocationError(String message);
     }
 
     interface Presenter {

@@ -12,4 +12,9 @@
     <string name="here">Here</string>
     <string name="unexpected_error">Unexpected Error</string>
     <string name="error_user_register">User Couldn\'t Be Registered</string>
+    <string name="permission_denied">Access to location not granted</string>
+    <string name="error_empty_fields">Please fill all the fields</string>
+    <string name="no_gps_signal">No GPS Signal</string>
+    <string name="registered_successfully">" registered successfully"</string>
+    <string name="success">Success</string>
 </resources>
