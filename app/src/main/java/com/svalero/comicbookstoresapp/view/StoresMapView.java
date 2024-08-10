@@ -1,8 +1,6 @@
 package com.svalero.comicbookstoresapp.view;
 
-import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,8 +38,6 @@ public class StoresMapView extends InnerBaseActivity {
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_logout) {
-            SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
             editor.remove("USER_ID");
             editor.apply();
             Intent intent = new Intent(this, MainView.class);

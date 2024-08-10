@@ -1,9 +1,6 @@
 package com.svalero.comicbookstoresapp.presenter;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
 import android.content.Context;
-import android.content.SharedPreferences;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
 import com.svalero.comicbookstoresapp.domain.User;
@@ -33,10 +30,8 @@ AddEditUserContract.Model.OnLocationReceivedListener {
 
     @Override
     public void onSaveUserSuccess(User user) {
-        SharedPreferences prefs = view.getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong("USER_ID", user.getId());
-        editor.apply();
+        view.getEditor().putLong("USER_ID", user.getId());
+        view.getEditor().apply();
 
         view.showSaveUserSuccessDialog(user.getUsername() + view.getString(R.string.registered_successfully));
     }

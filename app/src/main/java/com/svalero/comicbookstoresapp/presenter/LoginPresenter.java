@@ -1,8 +1,5 @@
 package com.svalero.comicbookstoresapp.presenter;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
-import android.content.SharedPreferences;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.LoginContract;
 import com.svalero.comicbookstoresapp.dto.LoginDTO;
@@ -30,10 +27,8 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Mo
 
     @Override
     public void onLoginSuccess(Long id) {
-        SharedPreferences prefs = view.getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putLong("USER_ID", id);
-        editor.apply();
+        view.getEditor().putLong("USER_ID", id);
+        view.getEditor().apply();
 
         view.showLoginSuccessDialog(view.getString(R.string.login_successful));
     }

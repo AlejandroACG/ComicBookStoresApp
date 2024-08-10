@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -12,13 +11,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.adapter.ReviewAdapter;
 import com.svalero.comicbookstoresapp.contract.StoreDetailsContract;
 import com.svalero.comicbookstoresapp.domain.Review;
 import com.svalero.comicbookstoresapp.presenter.StoreDetailsPresenter;
-
 import java.util.ArrayList;
 import java.util.List;
 

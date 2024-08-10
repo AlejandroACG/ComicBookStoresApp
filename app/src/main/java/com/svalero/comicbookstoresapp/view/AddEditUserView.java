@@ -39,9 +39,9 @@ import com.mapbox.maps.plugin.gestures.OnMapClickListener;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
 import com.svalero.comicbookstoresapp.presenter.AddEditUserPresenter;
-import com.svalero.comicbookstoresapp.util.OuterBaseActivity;
+import com.svalero.comicbookstoresapp.util.HybridBaseActivity;
 
-public class AddEditUserView extends OuterBaseActivity implements AddEditUserContract.View, Style.OnStyleLoaded, OnMapClickListener {
+public class AddEditUserView extends HybridBaseActivity implements AddEditUserContract.View, Style.OnStyleLoaded, OnMapClickListener {
     private EditText etUsername;
     private EditText etPassword;
     private EditText etEmail;
@@ -51,7 +51,6 @@ public class AddEditUserView extends OuterBaseActivity implements AddEditUserCon
     private GesturesPlugin gesturesPlugin;
     private Point currentPoint;
     private FusedLocationProviderClient fusedLocationClient;
-    private Integer mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
