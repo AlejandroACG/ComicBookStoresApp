@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -38,15 +37,15 @@ import com.mapbox.maps.plugin.gestures.GesturesPlugin;
 import com.mapbox.maps.plugin.gestures.GesturesUtils;
 import com.mapbox.maps.plugin.gestures.OnMapClickListener;
 import com.svalero.comicbookstoresapp.R;
-import com.svalero.comicbookstoresapp.contract.AddEditContract;
-import com.svalero.comicbookstoresapp.domain.User;
-import com.svalero.comicbookstoresapp.presenter.AddEditPresenter;
+import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
+import com.svalero.comicbookstoresapp.presenter.AddEditUserPresenter;
+import com.svalero.comicbookstoresapp.util.OuterBaseActivity;
 
-public class AddEditUserView extends AppCompatActivity implements AddEditContract.View, Style.OnStyleLoaded, OnMapClickListener {
+public class AddEditUserView extends OuterBaseActivity implements AddEditUserContract.View, Style.OnStyleLoaded, OnMapClickListener {
     private EditText etUsername;
     private EditText etPassword;
     private EditText etEmail;
-    private AddEditContract.Presenter presenter;
+    private AddEditUserPresenter presenter;
     private MapView mapView;
     private PointAnnotationManager pointAnnotationManager;
     private GesturesPlugin gesturesPlugin;
@@ -58,7 +57,7 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_addedituser);
+        setContentView(R.layout.activity_add_edit_user);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -66,7 +65,7 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
         });
 
         mode = getIntent().getIntExtra(MODE_KEY, 0);
-        presenter = new AddEditPresenter(this, this);
+        presenter = new AddEditUserPresenter(this, this);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         initializeMapView();
@@ -77,7 +76,7 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
     }
 
     private void initializeMapView() {
-        mapView = findViewById(R.id.mapView);
+        mapView = findViewById(R.id.map_addedit);
         mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, this);
     }
 
@@ -93,9 +92,9 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
     }
 
     private void setupInputFields() {
-        etUsername = findViewById(R.id.username_etxt);
-        etPassword = findViewById(R.id.password_etxt);
-        etEmail = findViewById(R.id.email_etxt);
+        etUsername = findViewById(R.id.username_addedit);
+        etPassword = findViewById(R.id.password_addedit);
+        etEmail = findViewById(R.id.email_addedit);
     }
 
     private void checkLocationPermissions() {
@@ -188,28 +187,29 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
     }
 
     @Override
-    public void showSaveSuccessDialog(User user, String message) {
+    public void showSaveUserSuccessDialog(String message) {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.success)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                    navigateToStoresMap(user);
+                    navigateToStoresMap();
                 })
                 .show();
     }
 
     @Override
-    public void navigateToStoresMap(User user) {
-        Intent intent = new Intent(this, StoresMapView.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void showSaveErrorDialog(String message) {
+    public void showSaveUserErrorDialog(String message) {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error_user_register)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, null)
                 .show();
+    }
+
+    @Override
+    public void navigateToStoresMap() {
+        Intent intent = new Intent(this, StoresMapView.class);
+        startActivity(intent);
+        finish();
     }
 }

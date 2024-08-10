@@ -8,14 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.svalero.comicbookstoresapp.R;
+import com.svalero.comicbookstoresapp.util.InnerBaseActivity;
 
-public class StoresMapView extends AppCompatActivity {
-
+public class StoresMapView extends InnerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +25,6 @@ public class StoresMapView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
-        String userId = prefs.getString("USER_ID", null);
-        if (userId == null) {
-            Intent intent = new Intent(this, MainView.class);
-            startActivity(intent);
-        }
     }
 
     @Override
@@ -48,10 +40,12 @@ public class StoresMapView extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_logout) {
-            SharedPreferences prefs = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+            SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             editor.remove("USER_ID");
             editor.apply();
+            Intent intent = new Intent(this, MainView.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

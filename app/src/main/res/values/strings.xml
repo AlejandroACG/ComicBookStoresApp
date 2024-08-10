@@ -19,4 +19,6 @@
     <string name="success">Success</string>
     <string name="logout">logout</string>
     <string name="map">map</string>
+    <string name="login_successful">Login successful</string>
+    <string name="error_login">Login failed</string>
 </resources>

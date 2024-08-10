@@ -10,52 +10,53 @@ import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.svalero.comicbookstoresapp.api.UserApi;
 import com.svalero.comicbookstoresapp.api.UserApiInterface;
-import com.svalero.comicbookstoresapp.contract.AddEditContract;
+import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
 import com.svalero.comicbookstoresapp.domain.ApiError;
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.dto.UserDTO;
 import java.io.IOException;
 import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditModel implements AddEditContract.Model {
+public class AddEditUserModel implements AddEditUserContract.Model {
     private final FusedLocationProviderClient fusedLocationClient;
     private final Context context;
 
-    public AddEditModel(Context context) {
+    public AddEditUserModel(Context context) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
         this.context = context;
     }
 
     @Override
-    public void saveUser(User user, OnSaveUserListener listener) {
+    public void saveUser(UserDTO userDTO, OnSaveUserListener listener) {
         UserApiInterface api = UserApi.buildInstance();
-        Call<User> saveUserCall = api.createUser(user);
+        Call<User> saveUserCall = api.createUser(userDTO);
         saveUserCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 Log.e("saveUser", response.message());
                 if (response.isSuccessful() && response.body() != null) {
                     User user = response.body();
-                    listener.onSaveSuccess(user);
+                    listener.onSaveUserSuccess(user);
                 } else {
                     Log.e("saveUser", response.message());
                     ApiError apiError = null;
                     try {
                         apiError = new Gson().fromJson(response.errorBody().string(), ApiError.class);
                     } catch (IOException e) {
-                        listener.onSaveError("");
+                        listener.onSaveUserError("");
                         throw new RuntimeException(e);
                     }
-                    listener.onSaveError(apiError.getMessage());
+                    listener.onSaveUserError(apiError.getMessage());
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.e("saveUser", Objects.requireNonNull(t.getMessage()));
-                listener.onSaveError("");
+                listener.onSaveUserError("");
             }
         });
     }

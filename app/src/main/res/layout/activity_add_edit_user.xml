@@ -9,7 +9,7 @@
     tools:context=".view.AddEditUserView">
 
     <TextView
-        android:id="@+id/register_text"
+        android:id="@+id/register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -19,17 +19,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/form_constraint"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_text">
+        app:layout_constraintTop_toBottomOf="@+id/register_title">
 
         <EditText
-            android:id="@+id/username_etxt"
+            android:id="@+id/username_addedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -38,7 +38,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/password_etxt"
+            android:id="@+id/password_addedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -47,7 +47,7 @@
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/email_etxt"
+            android:id="@+id/email_addedit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -62,26 +62,26 @@
         android:layout_width="366dp"
         android:layout_height="365dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_constraint">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <com.mapbox.maps.MapView
-            android:id="@+id/mapView"
+            android:id="@+id/map_addedit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:mapbox_cameraBearing="0.0"
             app:mapbox_cameraPitch="0.0"
             app:mapbox_cameraTargetLat="0"
             app:mapbox_cameraTargetLng="0"
-            app:mapbox_cameraZoom="1.0" >
-        </com.mapbox.maps.MapView>
+            app:mapbox_cameraZoom="1.0"></com.mapbox.maps.MapView>
 
         <ImageButton
-            android:id="@+id/locate_button"
+            android:id="@+id/locate_addedit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -90,7 +90,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_register_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"

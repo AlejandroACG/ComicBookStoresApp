@@ -1,41 +1,18 @@
-package com.svalero.comicbookstoresapp.domain;
+package com.svalero.comicbookstoresapp.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class User {
-    private Long id;
-    private List<Review> reviews = new ArrayList<>();
+public class UserDTO {
     private String username;
     private String email;
     private String password;
     private Float latitude;
     private Float longitude;
 
-    public User(Long id, List<Review> reviews, String username, String email, String password, Float latitude, Float longitude) {
-        this.id = id;
-        this.reviews = reviews;
+    public UserDTO(String username, String email, String password, Float latitude, Float longitude) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
     }
 
     public String getUsername() {

@@ -20,4 +20,6 @@
     <string name="success">Éxito</string>
     <string name="logout">desloguear</string>
     <string name="map">mapa</string>
+    <string name="login_successful">Login exitoso</string>
+    <string name="error_login">Error al logear</string>
 </resources>

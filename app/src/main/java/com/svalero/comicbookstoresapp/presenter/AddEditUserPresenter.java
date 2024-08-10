@@ -5,47 +5,48 @@ import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.svalero.comicbookstoresapp.R;
-import com.svalero.comicbookstoresapp.contract.AddEditContract;
+import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
 import com.svalero.comicbookstoresapp.domain.User;
-import com.svalero.comicbookstoresapp.model.AddEditModel;
+import com.svalero.comicbookstoresapp.dto.UserDTO;
+import com.svalero.comicbookstoresapp.model.AddEditUserModel;
 import com.svalero.comicbookstoresapp.view.AddEditUserView;
 
-public class AddEditPresenter implements AddEditContract.Presenter, AddEditContract.Model.OnSaveUserListener,
-AddEditContract.Model.OnLocationReceivedListener {
+public class AddEditUserPresenter implements AddEditUserContract.Presenter, AddEditUserContract.Model.OnSaveUserListener,
+AddEditUserContract.Model.OnLocationReceivedListener {
     private AddEditUserView view;
-    private AddEditModel model;
+    private AddEditUserModel model;
 
-    public AddEditPresenter(AddEditUserView view, Context context) {
+    public AddEditUserPresenter(AddEditUserView view, Context context) {
         this.view = view;
-        model = new AddEditModel(context);
+        model = new AddEditUserModel(context);
     }
 
     @Override
     public void saveUser(String username, String email, String password, Float latitude, Float longitude) {
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            view.showSaveErrorDialog(view.getString(R.string.error_empty_fields));
+            view.showSaveUserErrorDialog(view.getString(R.string.error_empty_fields));
         } else {
-            User user = new User(username, email, password, latitude, longitude);
-            model.saveUser(user, this);
+            UserDTO userDTO = new UserDTO(username, email, password, latitude, longitude);
+            model.saveUser(userDTO, this);
         }
     }
 
     @Override
-    public void onSaveSuccess(User user) {
+    public void onSaveUserSuccess(User user) {
         SharedPreferences prefs = view.getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("USER_ID", String.valueOf(user.getId()));
+        editor.putLong("USER_ID", user.getId());
         editor.apply();
 
-        view.showSaveSuccessDialog(user, user.getUsername() + view.getString(R.string.registered_successfully));
+        view.showSaveUserSuccessDialog(user.getUsername() + view.getString(R.string.registered_successfully));
     }
 
     @Override
-    public void onSaveError(String message) {
+    public void onSaveUserError(String message) {
         if (message.isEmpty()) {
             message = view.getString(R.string.unexpected_error);
         }
-        view.showSaveErrorDialog(message);
+        view.showSaveUserErrorDialog(message);
     }
 
     @Override

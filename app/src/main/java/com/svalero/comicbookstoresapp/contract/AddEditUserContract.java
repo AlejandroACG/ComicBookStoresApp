@@ -1,14 +1,15 @@
 package com.svalero.comicbookstoresapp.contract;
 
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.dto.UserDTO;
 
-public interface AddEditContract {
+public interface AddEditUserContract {
     interface Model {
         interface OnSaveUserListener {
-            void onSaveSuccess(User user);
-            void onSaveError(String message);
+            void onSaveUserSuccess(User user);
+            void onSaveUserError(String message);
         }
-        void saveUser(User user, OnSaveUserListener listener);
+        void saveUser(UserDTO userDTO, OnSaveUserListener listener);
 
 //        interface OnUpdateUserListener {
 //            void onUpdateSuccess(User user);
@@ -24,11 +25,11 @@ public interface AddEditContract {
     }
 
     interface View {
-        void showSaveSuccessDialog(User user, String message);
-//        void showUpdateSuccessDialog(User user, String message);
-        void navigateToStoresMap(User user);
-        void showSaveErrorDialog(String message);
-//        void showUpdateErrorDialog(String message);
+        void showSaveUserSuccessDialog(String message);
+        void showSaveUserErrorDialog(String message);
+        //        void showUpdateSuccessDialog(User user, String message);
+        //        void showUpdateErrorDialog(String message);
+        void navigateToStoresMap();
         void showPermissionDeniedError();
         void showLocation(double latitude, double longitude);
         void showLocationError(String message);
