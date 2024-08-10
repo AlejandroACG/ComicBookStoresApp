@@ -1,22 +1,23 @@
 package com.svalero.comicbookstoresapp.presenter;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.svalero.comicbookstoresapp.R;
-import com.svalero.comicbookstoresapp.contract.RegisterContract;
+import com.svalero.comicbookstoresapp.contract.AddEditContract;
 import com.svalero.comicbookstoresapp.domain.User;
-import com.svalero.comicbookstoresapp.model.RegisterModel;
-import com.svalero.comicbookstoresapp.view.RegisterView;
+import com.svalero.comicbookstoresapp.model.AddEditModel;
+import com.svalero.comicbookstoresapp.view.AddEditUserView;
 
-public class RegisterPresenter implements RegisterContract.Presenter, RegisterContract.Model.OnSaveUserListener,
-RegisterContract.Model.OnLocationReceivedListener {
-    private RegisterView view;
-    private RegisterModel model;
+public class AddEditPresenter implements AddEditContract.Presenter, AddEditContract.Model.OnSaveUserListener,
+AddEditContract.Model.OnLocationReceivedListener {
+    private AddEditUserView view;
+    private AddEditModel model;
 
-    public RegisterPresenter(RegisterView view, Context context) {
+    public AddEditPresenter(AddEditUserView view, Context context) {
         this.view = view;
-        model = new RegisterModel(context);
+        model = new AddEditModel(context);
     }
 
     @Override
@@ -31,7 +32,7 @@ RegisterContract.Model.OnLocationReceivedListener {
 
     @Override
     public void onSaveSuccess(User user) {
-        SharedPreferences prefs = view.getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = view.getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("USER_ID", String.valueOf(user.getId()));
         editor.apply();
@@ -60,6 +61,6 @@ RegisterContract.Model.OnLocationReceivedListener {
     @Override
     public void onLocationError(String error) {
         view.showLocationError(error);
-        view.setupMapWithoutGPS();
+        view.addNoGPSMarker();
     }
 }

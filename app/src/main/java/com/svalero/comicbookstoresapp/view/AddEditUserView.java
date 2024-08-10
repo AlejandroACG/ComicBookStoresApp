@@ -1,7 +1,9 @@
 package com.svalero.comicbookstoresapp.view;
 
+import static com.svalero.comicbookstoresapp.util.Constants.MODE_KEY;
+import static com.svalero.comicbookstoresapp.util.Constants.ZOOM_IN;
+
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -22,6 +24,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
+import com.mapbox.maps.CameraState;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
 import com.mapbox.maps.extension.style.layers.properties.generated.IconAnchor;
@@ -35,34 +38,36 @@ import com.mapbox.maps.plugin.gestures.GesturesPlugin;
 import com.mapbox.maps.plugin.gestures.GesturesUtils;
 import com.mapbox.maps.plugin.gestures.OnMapClickListener;
 import com.svalero.comicbookstoresapp.R;
-import com.svalero.comicbookstoresapp.contract.RegisterContract;
+import com.svalero.comicbookstoresapp.contract.AddEditContract;
 import com.svalero.comicbookstoresapp.domain.User;
-import com.svalero.comicbookstoresapp.presenter.RegisterPresenter;
+import com.svalero.comicbookstoresapp.presenter.AddEditPresenter;
 
-public class RegisterView extends AppCompatActivity implements RegisterContract.View, Style.OnStyleLoaded, OnMapClickListener {
+public class AddEditUserView extends AppCompatActivity implements AddEditContract.View, Style.OnStyleLoaded, OnMapClickListener {
     private EditText etUsername;
     private EditText etPassword;
     private EditText etEmail;
-    private RegisterContract.Presenter presenter;
+    private AddEditContract.Presenter presenter;
     private MapView mapView;
     private PointAnnotationManager pointAnnotationManager;
     private GesturesPlugin gesturesPlugin;
     private Point currentPoint;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private FusedLocationProviderClient fusedLocationClient;
+    private Integer mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_addedituser);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        presenter = new RegisterPresenter(this, this);
+        mode = getIntent().getIntExtra(MODE_KEY, 0);
+        presenter = new AddEditPresenter(this, this);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         initializeMapView();
@@ -114,7 +119,7 @@ public class RegisterView extends AppCompatActivity implements RegisterContract.
                 presenter.requestLocation();
             } else {
                 showPermissionDeniedError();
-                setupMapWithoutGPS();
+                addNoGPSMarker();
             }
         }
     }
@@ -126,7 +131,7 @@ public class RegisterView extends AppCompatActivity implements RegisterContract.
 
     @Override
     public void showLocation(double latitude, double longitude) {
-        setStartingMap(latitude, longitude, "", 12);
+        setCamera(latitude, longitude, "", ZOOM_IN);
     }
 
     @Override
@@ -134,11 +139,12 @@ public class RegisterView extends AppCompatActivity implements RegisterContract.
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    public void setupMapWithoutGPS() {
-        setStartingMap(0, 0, getString(R.string.no_gps_signal), 2);
+    public void addNoGPSMarker() {
+        CameraState cameraState = mapView.getMapboxMap().getCameraState();
+        addMarker(cameraState.getCenter().latitude(), cameraState.getCenter().longitude(), getString(R.string.no_gps_signal));
     }
 
-    private void setStartingMap(double latitude, double longitude, String message, double zoom) {
+    private void setCamera(double latitude, double longitude, String message, double zoom) {
         currentPoint = Point.fromLngLat(longitude, latitude);
         addMarker(latitude, longitude, message);
         mapView.getMapboxMap().setCamera(

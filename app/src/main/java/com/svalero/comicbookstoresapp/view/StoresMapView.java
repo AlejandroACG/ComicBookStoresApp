@@ -1,9 +1,9 @@
 package com.svalero.comicbookstoresapp.view;
 
+import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.activity.EdgeToEdge;
@@ -13,8 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.svalero.comicbookstoresapp.R;
-
-import java.util.Objects;
 
 public class StoresMapView extends AppCompatActivity {
 
@@ -28,6 +26,13 @@ public class StoresMapView extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE);
+        String userId = prefs.getString("USER_ID", null);
+        if (userId == null) {
+            Intent intent = new Intent(this, MainView.class);
+            startActivity(intent);
+        }
     }
 
     @Override

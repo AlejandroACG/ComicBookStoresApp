@@ -1,20 +1,15 @@
 package com.svalero.comicbookstoresapp.view;
 
+import static com.svalero.comicbookstoresapp.util.Constants.MODE_KEY;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.svalero.comicbookstoresapp.R;
-
-import java.util.Objects;
 
 public class MainView extends AppCompatActivity {
     @Override
@@ -29,13 +24,15 @@ public class MainView extends AppCompatActivity {
         });
     }
 
-    public void navigateToLogin(View view) {
-        Intent intent = new Intent(this, LoginView.class);
+    public void navigateToRegister(View view) {
+        Intent intent = new Intent(this, AddEditUserView.class);
+        intent.putExtra(MODE_KEY, 0);
         startActivity(intent);
     }
 
-    public void navigateToRegister(View view) {
-        Intent intent = new Intent(this, RegisterView.class);
+    public void navigateToLogin(View view) {
+        Intent intent = new Intent(this, AddEditUserView.class);
+        intent.putExtra(MODE_KEY, 1);
         startActivity(intent);
     }
 }
