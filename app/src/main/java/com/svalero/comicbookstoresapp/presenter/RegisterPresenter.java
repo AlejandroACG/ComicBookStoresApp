@@ -1,18 +1,13 @@
 package com.svalero.comicbookstoresapp.presenter;
 
 import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.RegisterContract;
 import com.svalero.comicbookstoresapp.domain.User;
 import com.svalero.comicbookstoresapp.model.RegisterModel;
 import com.svalero.comicbookstoresapp.view.RegisterView;
-
-import java.util.Objects;
 
 public class RegisterPresenter implements RegisterContract.Presenter, RegisterContract.Model.OnSaveUserListener,
 RegisterContract.Model.OnLocationReceivedListener {

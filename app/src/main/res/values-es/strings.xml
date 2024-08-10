@@ -18,4 +18,6 @@
     <string name="no_gps_signal">No hay señal de GPS</string>
     <string name="registered_successfully">" registrado con éxito"</string>
     <string name="success">Éxito</string>
+    <string name="logout">desloguear</string>
+    <string name="map">mapa</string>
 </resources>

@@ -17,4 +17,6 @@
     <string name="no_gps_signal">No GPS Signal</string>
     <string name="registered_successfully">" registered successfully"</string>
     <string name="success">Success</string>
+    <string name="logout">logout</string>
+    <string name="map">map</string>
 </resources>
