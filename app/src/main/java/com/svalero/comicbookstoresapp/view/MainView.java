@@ -31,8 +31,7 @@ public class MainView extends OuterBaseActivity {
     }
 
     public void navigateToLogin(View view) {
-        Intent intent = new Intent(this, AddEditUserView.class);
-        intent.putExtra(MODE_KEY, 1);
+        Intent intent = new Intent(this, LoginView.class);
         startActivity(intent);
     }
 }

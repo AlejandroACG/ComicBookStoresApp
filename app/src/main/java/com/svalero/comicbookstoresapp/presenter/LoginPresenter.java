@@ -2,9 +2,7 @@ package com.svalero.comicbookstoresapp.presenter;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.svalero.comicbookstoresapp.util.Constants.SHARED_PREFERENCES;
-
 import android.content.SharedPreferences;
-
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.LoginContract;
 import com.svalero.comicbookstoresapp.dto.LoginDTO;

@@ -46,6 +46,7 @@ public class StoresMapView extends InnerBaseActivity {
             editor.apply();
             Intent intent = new Intent(this, MainView.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
