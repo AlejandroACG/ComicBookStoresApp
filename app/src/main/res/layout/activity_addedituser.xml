@@ -77,7 +77,16 @@
             app:mapbox_cameraPitch="0.0"
             app:mapbox_cameraTargetLat="0"
             app:mapbox_cameraTargetLng="0"
-            app:mapbox_cameraZoom="1.0" />
+            app:mapbox_cameraZoom="1.0" >
+        </com.mapbox.maps.MapView>
+
+        <ImageButton
+            android:id="@+id/locate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:onClick="checkLocationPermissions"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
     </FrameLayout>
 
     <Button

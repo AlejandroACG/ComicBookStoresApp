@@ -103,11 +103,15 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    LOCATION_PERMISSION_REQUEST_CODE);
+                    new String[]{ Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE );
         } else {
             presenter.requestLocation();
         }
+    }
+
+    public void checkLocationPermissions(View view) {
+        checkLocationPermissions();
     }
 
     @Override
