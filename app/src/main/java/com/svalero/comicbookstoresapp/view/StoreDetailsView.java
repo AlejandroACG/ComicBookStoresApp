@@ -52,7 +52,7 @@ public class StoreDetailsView extends AppCompatActivity implements StoreDetailsC
     }
 
     public void addReview(View view) {
-        Intent intent = new Intent(this, AddReviewView.class);
+        Intent intent = new Intent(this, AddEditReviewView.class);
         startActivity(intent);
     }
 

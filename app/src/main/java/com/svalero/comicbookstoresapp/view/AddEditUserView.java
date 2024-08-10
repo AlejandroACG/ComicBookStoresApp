@@ -1,8 +1,8 @@
 package com.svalero.comicbookstoresapp.view;
 
+import static com.svalero.comicbookstoresapp.util.Constants.LOCATION_PERMISSION_REQUEST_CODE;
 import static com.svalero.comicbookstoresapp.util.Constants.MODE_KEY;
 import static com.svalero.comicbookstoresapp.util.Constants.ZOOM_IN;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -51,7 +51,6 @@ public class AddEditUserView extends AppCompatActivity implements AddEditContrac
     private PointAnnotationManager pointAnnotationManager;
     private GesturesPlugin gesturesPlugin;
     private Point currentPoint;
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private FusedLocationProviderClient fusedLocationClient;
     private Integer mode;
 
