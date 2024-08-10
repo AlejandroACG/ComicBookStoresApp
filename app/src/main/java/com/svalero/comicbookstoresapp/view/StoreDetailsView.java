@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,10 +15,11 @@ import com.svalero.comicbookstoresapp.adapter.ReviewAdapter;
 import com.svalero.comicbookstoresapp.contract.StoreDetailsContract;
 import com.svalero.comicbookstoresapp.domain.Review;
 import com.svalero.comicbookstoresapp.presenter.StoreDetailsPresenter;
+import com.svalero.comicbookstoresapp.util.InnerBaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreDetailsView extends AppCompatActivity implements StoreDetailsContract.View {
+public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsContract.View {
     private List<Review> reviews;
     private ReviewAdapter adapter;
     private StoreDetailsPresenter presenter;

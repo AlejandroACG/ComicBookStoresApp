@@ -50,7 +50,6 @@ public class AddEditUserView extends HybridBaseActivity implements AddEditUserCo
     private PointAnnotationManager pointAnnotationManager;
     private GesturesPlugin gesturesPlugin;
     private Point currentPoint;
-    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,6 @@ public class AddEditUserView extends HybridBaseActivity implements AddEditUserCo
 
         mode = getIntent().getIntExtra(MODE_KEY, 0);
         presenter = new AddEditUserPresenter(this, this);
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         initializeMapView();
         initializePointAnnotationManager();
