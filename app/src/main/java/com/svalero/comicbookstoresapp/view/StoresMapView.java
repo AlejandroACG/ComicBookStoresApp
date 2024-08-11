@@ -1,5 +1,6 @@
 package com.svalero.comicbookstoresapp.view;
 
+import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,11 +39,14 @@ public class StoresMapView extends InnerBaseActivity {
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_logout) {
-            editor.remove("USER_ID");
+            editor.remove(PREFERENCES_ID);
             editor.apply();
             Intent intent = new Intent(this, MainView.class);
             startActivity(intent);
             finish();
+        } else if (item.getItemId() == R.id.action_profile) {
+            Intent intent = new Intent(this, EditUserView.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

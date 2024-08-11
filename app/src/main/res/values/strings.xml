@@ -21,4 +21,7 @@
     <string name="map">map</string>
     <string name="login_successful">Login successful</string>
     <string name="error_login">Login failed</string>
+    <string name="error_fetching_user_data">Error fetching user data</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current Password</string>
 </resources>

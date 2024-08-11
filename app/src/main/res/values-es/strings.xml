@@ -22,4 +22,7 @@
     <string name="map">mapa</string>
     <string name="login_successful">Login exitoso</string>
     <string name="error_login">Error al logear</string>
+    <string name="error_fetching_user_data">Error recabando los datos de usuario</string>
+    <string name="new_password">Contraseña nueva</string>
+    <string name="current_password">Contraseña actual</string>
 </resources>

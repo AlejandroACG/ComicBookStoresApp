@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".view.AddEditUserView">
+    tools:context=".view.EditUserView">
 
     <TextView
-        android:id="@+id/register_title"
+        android:id="@+id/title_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/register"
+        android:text="@string/edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,10 +26,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_title">
+        app:layout_constraintTop_toBottomOf="@+id/title_edit">
 
         <EditText
-            android:id="@+id/username_addedit"
+            android:id="@+id/username_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -38,22 +38,22 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/password_addedit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/email_addedit"
+            android:id="@+id/email_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/password_new_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10"
+            android:hint="@string/new_password"
+            android:inputType="textPassword" />
 
     </LinearLayout>
 
@@ -64,14 +64,12 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <com.mapbox.maps.MapView
-            android:id="@+id/map_addedit"
+            android:id="@+id/map_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:mapbox_cameraBearing="0.0"
@@ -81,7 +79,7 @@
             app:mapbox_cameraZoom="1.0"></com.mapbox.maps.MapView>
 
         <ImageButton
-            android:id="@+id/locate_addedit"
+            android:id="@+id/locate_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
@@ -89,15 +87,47 @@
             app:srcCompat="@android:drawable/ic_menu_myplaces" />
     </FrameLayout>
 
-    <Button
-        android:id="@+id/btn_register_2"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/password_current_edit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:onClick="addUser"
-        android:text="@string/register"
+        android:layout_margin="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="@string/current_password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btn_layout_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+
+    <LinearLayout
+        android:id="@+id/btn_layout_user"
+        android:layout_width="209dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:onClick="editUser"
+            android:text="@string/edit" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:onClick="deleteUser"
+            android:text="Delete" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

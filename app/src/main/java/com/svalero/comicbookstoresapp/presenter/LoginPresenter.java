@@ -1,5 +1,7 @@
 package com.svalero.comicbookstoresapp.presenter;
 
+import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
+
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.LoginContract;
 import com.svalero.comicbookstoresapp.dto.LoginDTO;
@@ -27,7 +29,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.Mo
 
     @Override
     public void onLoginSuccess(Long id) {
-        view.getEditor().putLong("USER_ID", id);
+        view.getEditor().putLong(PREFERENCES_ID, id);
         view.getEditor().apply();
 
         view.showLoginSuccessDialog(view.getString(R.string.login_successful));

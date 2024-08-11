@@ -1,7 +1,6 @@
 package com.svalero.comicbookstoresapp.view;
 
 import static com.svalero.comicbookstoresapp.util.Constants.LOCATION_PERMISSION_REQUEST_CODE;
-import static com.svalero.comicbookstoresapp.util.Constants.MODE_KEY;
 import static com.svalero.comicbookstoresapp.util.Constants.ZOOM_IN;
 import android.Manifest;
 import android.content.Intent;
@@ -19,8 +18,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.CameraState;
@@ -37,15 +34,15 @@ import com.mapbox.maps.plugin.gestures.GesturesPlugin;
 import com.mapbox.maps.plugin.gestures.GesturesUtils;
 import com.mapbox.maps.plugin.gestures.OnMapClickListener;
 import com.svalero.comicbookstoresapp.R;
-import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
-import com.svalero.comicbookstoresapp.presenter.AddEditUserPresenter;
-import com.svalero.comicbookstoresapp.util.HybridBaseActivity;
+import com.svalero.comicbookstoresapp.contract.RegisterContract;
+import com.svalero.comicbookstoresapp.presenter.RegisterPresenter;
+import com.svalero.comicbookstoresapp.util.OuterBaseActivity;
 
-public class AddEditUserView extends HybridBaseActivity implements AddEditUserContract.View, Style.OnStyleLoaded, OnMapClickListener {
+public class RegisterView extends OuterBaseActivity implements RegisterContract.View, Style.OnStyleLoaded, OnMapClickListener {
     private EditText etUsername;
     private EditText etPassword;
     private EditText etEmail;
-    private AddEditUserPresenter presenter;
+    private RegisterPresenter presenter;
     private MapView mapView;
     private PointAnnotationManager pointAnnotationManager;
     private GesturesPlugin gesturesPlugin;
@@ -55,25 +52,29 @@ public class AddEditUserView extends HybridBaseActivity implements AddEditUserCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_edit_user);
+        setContentView(R.layout.activity_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
 
-        mode = getIntent().getIntExtra(MODE_KEY, 0);
-        presenter = new AddEditUserPresenter(this, this);
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        presenter = new RegisterPresenter(this, this);
 
         initializeMapView();
         initializePointAnnotationManager();
         initializeGesturesPlugin();
-        setupInputFields();
         checkLocationPermissions();
+        setupInputFields();
     }
 
     private void initializeMapView() {
-        mapView = findViewById(R.id.map_addedit);
+        mapView = findViewById(R.id.map_register);
         mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, this);
     }
 
@@ -89,9 +90,9 @@ public class AddEditUserView extends HybridBaseActivity implements AddEditUserCo
     }
 
     private void setupInputFields() {
-        etUsername = findViewById(R.id.username_addedit);
-        etPassword = findViewById(R.id.password_addedit);
-        etEmail = findViewById(R.id.email_addedit);
+        etUsername = findViewById(R.id.username_register);
+        etPassword = findViewById(R.id.password_register);
+        etEmail = findViewById(R.id.email_register);
     }
 
     private void checkLocationPermissions() {

@@ -1,21 +1,22 @@
 package com.svalero.comicbookstoresapp.presenter;
 
+import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
 import android.content.Context;
 import com.svalero.comicbookstoresapp.R;
-import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
+import com.svalero.comicbookstoresapp.contract.RegisterContract;
 import com.svalero.comicbookstoresapp.domain.User;
 import com.svalero.comicbookstoresapp.dto.UserDTO;
-import com.svalero.comicbookstoresapp.model.AddEditUserModel;
-import com.svalero.comicbookstoresapp.view.AddEditUserView;
+import com.svalero.comicbookstoresapp.model.RegisterModel;
+import com.svalero.comicbookstoresapp.view.RegisterView;
 
-public class AddEditUserPresenter implements AddEditUserContract.Presenter, AddEditUserContract.Model.OnSaveUserListener,
-AddEditUserContract.Model.OnLocationReceivedListener {
-    private AddEditUserView view;
-    private AddEditUserModel model;
+public class RegisterPresenter implements RegisterContract.Presenter, RegisterContract.Model.OnSaveUserListener,
+        RegisterContract.Model.OnLocationReceivedListener {
+    private RegisterView view;
+    private RegisterModel model;
 
-    public AddEditUserPresenter(AddEditUserView view, Context context) {
+    public RegisterPresenter(RegisterView view, Context context) {
         this.view = view;
-        model = new AddEditUserModel(context);
+        model = new RegisterModel(context);
     }
 
     @Override
@@ -30,7 +31,7 @@ AddEditUserContract.Model.OnLocationReceivedListener {
 
     @Override
     public void onSaveUserSuccess(User user) {
-        view.getEditor().putLong("USER_ID", user.getId());
+        view.getEditor().putLong(PREFERENCES_ID, user.getId());
         view.getEditor().apply();
 
         view.showSaveUserSuccessDialog(user.getUsername() + view.getString(R.string.registered_successfully));

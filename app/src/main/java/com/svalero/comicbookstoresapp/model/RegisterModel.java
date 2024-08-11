@@ -10,7 +10,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
 import com.svalero.comicbookstoresapp.api.UserApi;
 import com.svalero.comicbookstoresapp.api.UserApiInterface;
-import com.svalero.comicbookstoresapp.contract.AddEditUserContract;
+import com.svalero.comicbookstoresapp.contract.RegisterContract;
 import com.svalero.comicbookstoresapp.domain.ApiError;
 import com.svalero.comicbookstoresapp.domain.User;
 import com.svalero.comicbookstoresapp.dto.UserDTO;
@@ -20,11 +20,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditUserModel implements AddEditUserContract.Model {
+public class RegisterModel implements RegisterContract.Model {
     private final FusedLocationProviderClient fusedLocationClient;
     private final Context context;
 
-    public AddEditUserModel(Context context) {
+    public RegisterModel(Context context) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
         this.context = context;
     }

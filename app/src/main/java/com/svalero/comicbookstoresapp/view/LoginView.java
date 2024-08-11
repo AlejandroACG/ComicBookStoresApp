@@ -29,6 +29,11 @@ public class LoginView extends OuterBaseActivity implements LoginContract.View {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         presenter = new LoginPresenter(this);
         setupInputFields();

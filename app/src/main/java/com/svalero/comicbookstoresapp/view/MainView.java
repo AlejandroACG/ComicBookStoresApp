@@ -1,6 +1,5 @@
 package com.svalero.comicbookstoresapp.view;
 
-import static com.svalero.comicbookstoresapp.util.Constants.MODE_KEY;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +24,7 @@ public class MainView extends OuterBaseActivity {
     }
 
     public void navigateToRegister(View view) {
-        Intent intent = new Intent(this, AddEditUserView.class);
-        intent.putExtra(MODE_KEY, 0);
+        Intent intent = new Intent(this, RegisterView.class);
         startActivity(intent);
     }
 

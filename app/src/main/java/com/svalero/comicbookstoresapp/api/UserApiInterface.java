@@ -6,7 +6,9 @@ import com.svalero.comicbookstoresapp.dto.UserDTO;
 import com.svalero.comicbookstoresapp.dto.idDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface UserApiInterface {
     @POST("users")
@@ -14,4 +16,7 @@ public interface UserApiInterface {
 
     @POST("user/login")
     Call<idDTO> login(@Body LoginDTO loginDTO);
+
+    @GET("user/{id}")
+    Call<User> getUser(@Path("id") long id);
 }

@@ -1,15 +1,14 @@
 package com.svalero.comicbookstoresapp.contract;
 
 import com.svalero.comicbookstoresapp.domain.User;
-import com.svalero.comicbookstoresapp.dto.UserDTO;
 
-public interface AddEditUserContract {
+public interface EditUserContract {
     interface Model {
-        interface OnSaveUserListener {
-            void onSaveUserSuccess(User user);
-            void onSaveUserError(String message);
+        interface OnGetUserListener {
+            void onGetUserSuccess(User user);
+            void onGetUserError(String message);
         }
-        void saveUser(UserDTO userDTO, OnSaveUserListener listener);
+        void getUser(Long id, OnGetUserListener listener);
 
 //        interface OnUpdateUserListener {
 //            void onUpdateSuccess(User user);
@@ -25,8 +24,7 @@ public interface AddEditUserContract {
     }
 
     interface View {
-        void showSaveUserSuccessDialog(String message);
-        void showSaveUserErrorDialog(String message);
+        void showGetUserErrorDialog(String message);
         //        void showUpdateSuccessDialog(User user, String message);
         //        void showUpdateErrorDialog(String message);
         void navigateToStoresMap();
@@ -36,8 +34,8 @@ public interface AddEditUserContract {
     }
 
     interface Presenter {
-        void saveUser(String username, String email, String password, Float latitude, Float longitude);
-//        void updateUser(Long id, String username, String email, String password, Float latitude, Float longitude);
+        void getUser();
+        //        void updateUser(Long id, String username, String email, String password, Float latitude, Float longitude);
         void requestLocation();
     }
 }
