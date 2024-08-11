@@ -21,7 +21,7 @@ public class RegisterPresenter implements RegisterContract.Presenter, RegisterCo
 
     @Override
     public void saveUser(String username, String email, String password, Float latitude, Float longitude) {
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || latitude == null || longitude == null) {
             view.showSaveUserErrorDialog(view.getString(R.string.error_empty_fields));
         } else {
             UserDTO userDTO = new UserDTO(username, email, password, latitude, longitude);

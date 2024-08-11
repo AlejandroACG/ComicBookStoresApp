@@ -1,6 +1,7 @@
 package com.svalero.comicbookstoresapp.contract;
 
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.dto.UserDTO;
 
 public interface EditUserContract {
     interface Model {
@@ -10,32 +11,42 @@ public interface EditUserContract {
         }
         void getUser(Long id, OnGetUserListener listener);
 
-//        interface OnUpdateUserListener {
-//            void onUpdateSuccess(User user);
-//            void onUpdateError(String message);
-//        }
-//        void updateUser(User user, OnUpdateUserListener listener);
-
-        void getCurrentLocation(OnLocationReceivedListener listener);
         interface OnLocationReceivedListener {
             void onLocationReceived(double latitude, double longitude);
             void onLocationError(String message);
         }
+        void getCurrentLocation(OnLocationReceivedListener listener);
+
+        interface OnUpdateUserListener {
+            void onUpdateUserSuccess(User user);
+            void onUpdateUserError(String message);
+        }
+        void updateUser(Long id, UserDTO userDTO, OnUpdateUserListener listener);
+
+        interface OnDeleteUserListener {
+            void onDeleteUserSuccess();
+            void onDeleteUserError(String message);
+        }
+        void deleteUser(Long id, OnDeleteUserListener listener);
     }
 
     interface View {
         void showGetUserErrorDialog(String message);
-        //        void showUpdateSuccessDialog(User user, String message);
-        //        void showUpdateErrorDialog(String message);
+        void showUpdateUserSuccessDialog(String message);
+        void showUpdateUserErrorDialog(String message);
+        void showDeleteUserSuccessDialog(String message);
+        void showDeleteUserErrorDialog(String message);
         void navigateToStoresMap();
+        void navigateToMain();
         void showPermissionDeniedError();
         void showLocation(double latitude, double longitude);
         void showLocationError(String message);
     }
 
     interface Presenter {
-        void getUser();
-        //        void updateUser(Long id, String username, String email, String password, Float latitude, Float longitude);
+        void getUser(Long id);
         void requestLocation();
+        void updateUser(Long id, UserDTO userDTO);
+        void deleteUser(Long id);
     }
 }

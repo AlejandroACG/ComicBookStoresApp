@@ -21,11 +21,19 @@
     <string name="map">map</string>
     <string name="login_successful">Login successful</string>
     <string name="error_login">Login failed</string>
-    <string name="error_fetching_user_data">Error fetching user data</string>
-    <string name="new_password">New Password</string>
-    <string name="current_password">Current Password</string>
+    <string name="error_user_get">Error fetching user data</string>
     <string name="gps_cannot_be_accessed">GPS cannot be accessed</string>
     <string name="unable_to_retrieve_location">Unable to retrieve location</string>
     <string name="location_permission_not_granted">Location permission not granted</string>
     <string name="failed_to_load_reviews">Failed to load reviews</string>
+    <string name="error_user_update">User Couldn\'t Be Edited</string>
+    <string name="error_user_delete">User Couldn\'t Be Deleted</string>
+    <string name="edited_successfully">" edited successfully"</string>
+    <string name="deleted_successfully">User deleted successfully</string>
+    <string name="edit_dialog">"Edit "</string>
+    <string name="submit_changes">Submit changes?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_dialog">"Delete "</string>
+    <string name="submit_delete">Delete user?</string>
 </resources>

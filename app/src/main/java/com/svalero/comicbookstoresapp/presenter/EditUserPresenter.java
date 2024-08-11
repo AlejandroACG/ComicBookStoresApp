@@ -1,15 +1,16 @@
 package com.svalero.comicbookstoresapp.presenter;
 
-import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
 import android.content.Context;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.EditUserContract;
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.dto.UserDTO;
 import com.svalero.comicbookstoresapp.model.EditUserModel;
 import com.svalero.comicbookstoresapp.view.EditUserView;
 
 public class EditUserPresenter implements EditUserContract.Presenter, EditUserContract.Model.OnLocationReceivedListener,
-        EditUserContract.Model.OnGetUserListener {
+        EditUserContract.Model.OnGetUserListener, EditUserContract.Model.OnUpdateUserListener,
+        EditUserContract.Model.OnDeleteUserListener {
     private EditUserView view;
     private EditUserModel model;
 
@@ -19,13 +20,13 @@ public class EditUserPresenter implements EditUserContract.Presenter, EditUserCo
     }
 
     @Override
-    public void getUser() {
-        model.getUser(view.getPrefs().getLong(PREFERENCES_ID, 0), this);
+    public void getUser(Long id) {
+        model.getUser(id, this);
     }
 
     @Override
     public void onGetUserSuccess(User user) {
-        view.getUser(user);
+        view.setUser(user);
     }
 
     @Override
@@ -50,5 +51,46 @@ public class EditUserPresenter implements EditUserContract.Presenter, EditUserCo
     public void onLocationError(String error) {
         view.showLocationError(error);
         view.addNoGPSMarker();
+    }
+
+    @Override
+    public void updateUser(Long id, UserDTO userDTO) {
+        if (userDTO.getUsername().isEmpty() || userDTO.getEmail().isEmpty() || userDTO.getPassword().isEmpty() ||
+                userDTO.getLatitude() == null || userDTO.getLongitude() == null) {
+            view.showUpdateUserErrorDialog(view.getString(R.string.error_empty_fields));
+        } else {
+            model.updateUser(id, userDTO, this);
+        }
+    }
+
+    @Override
+    public void onUpdateUserSuccess(User user) {
+        view.showUpdateUserSuccessDialog(user.getUsername() + view.getString(R.string.edited_successfully));
+    }
+
+    @Override
+    public void onUpdateUserError(String message) {
+        if (message.isEmpty()) {
+            message = view.getString(R.string.unexpected_error);
+        }
+        view.showUpdateUserErrorDialog(message);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        model.deleteUser(id, this);
+    }
+
+    @Override
+    public void onDeleteUserSuccess() {
+        view.showDeleteUserSuccessDialog(view.getString(R.string.deleted_successfully));
+    }
+
+    @Override
+    public void onDeleteUserError(String message) {
+        if (message.isEmpty()) {
+            message = view.getString(R.string.unexpected_error);
+        }
+        view.showDeleteUserErrorDialog(message);
     }
 }

@@ -197,7 +197,7 @@ public class RegisterView extends OuterBaseActivity implements RegisterContract.
         new AlertDialog.Builder(this)
                 .setTitle(R.string.success)
                 .setMessage(message)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
                     navigateToStoresMap();
                 })
                 .show();
@@ -208,7 +208,7 @@ public class RegisterView extends OuterBaseActivity implements RegisterContract.
         new AlertDialog.Builder(this)
                 .setTitle(R.string.error_user_register)
                 .setMessage(message)
-                .setPositiveButton(android.R.string.ok, null)
+                .setPositiveButton(R.string.ok, null)
                 .show();
     }
 

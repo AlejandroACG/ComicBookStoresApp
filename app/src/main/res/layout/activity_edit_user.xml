@@ -47,12 +47,12 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/password_new_edit"
+            android:id="@+id/password_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
-            android:hint="@string/new_password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -64,6 +64,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_layout_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -76,7 +78,7 @@
             app:mapbox_cameraPitch="0.0"
             app:mapbox_cameraTargetLat="0"
             app:mapbox_cameraTargetLng="0"
-            app:mapbox_cameraZoom="1.0"></com.mapbox.maps.MapView>
+            app:mapbox_cameraZoom="1.0" />
 
         <ImageButton
             android:id="@+id/locate_edit"
@@ -87,23 +89,9 @@
             app:srcCompat="@android:drawable/ic_menu_myplaces" />
     </FrameLayout>
 
-    <EditText
-        android:id="@+id/password_current_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="@string/current_password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btn_layout_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
-
     <LinearLayout
         android:id="@+id/btn_layout_user"
+        style="?android:attr/buttonBarStyle"
         android:layout_width="209dp"
         android:layout_height="48dp"
         android:layout_marginBottom="10dp"
@@ -128,6 +116,6 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:onClick="deleteUser"
-            android:text="Delete" />
+            android:text="@string/delete" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

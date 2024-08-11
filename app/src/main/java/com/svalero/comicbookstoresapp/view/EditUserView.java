@@ -1,6 +1,7 @@
 package com.svalero.comicbookstoresapp.view;
 
 import static com.svalero.comicbookstoresapp.util.Constants.LOCATION_PERMISSION_REQUEST_CODE;
+import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
 import static com.svalero.comicbookstoresapp.util.Constants.ZOOM_IN;
 import android.Manifest;
 import android.content.Intent;
@@ -36,14 +37,14 @@ import com.mapbox.maps.plugin.gestures.OnMapClickListener;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.EditUserContract;
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.dto.UserDTO;
 import com.svalero.comicbookstoresapp.presenter.EditUserPresenter;
 import com.svalero.comicbookstoresapp.util.InnerBaseActivity;
 
 public class EditUserView extends InnerBaseActivity implements EditUserContract.View, Style.OnStyleLoaded, OnMapClickListener {
     private EditText etUsername;
     private EditText etEmail;
-    private EditText etCurrentPassword;
-    private EditText etNewPassword;
+    private EditText etPassword;
     private EditUserPresenter presenter;
     private MapView mapView;
     private PointAnnotationManager pointAnnotationManager;
@@ -72,10 +73,10 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
         initializeMapView();
         initializePointAnnotationManager();
         initializeGesturesPlugin();
-        presenter.getUser();
+        presenter.getUser(getPrefs().getLong(PREFERENCES_ID, 0));
     }
 
-    public void getUser(User user) {
+    public void setUser(User user) {
         this.user = user;
         showLocation(user.getLatitude(), user.getLongitude());
         setupInputFields();
@@ -84,9 +85,9 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
     @Override
     public void showGetUserErrorDialog(String message) {
         new AlertDialog.Builder(this)
-                .setTitle(R.string.error_fetching_user_data)
+                .setTitle(R.string.error_user_get)
                 .setMessage(message)
-                .setPositiveButton(android.R.string.ok, null)
+                .setPositiveButton(R.string.ok, null)
                 .show();
     }
 
@@ -113,8 +114,7 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
     private void setupInputFields() {
         etUsername = findViewById(R.id.username_edit);
         etEmail = findViewById(R.id.email_edit);
-        etCurrentPassword = findViewById(R.id.password_current_edit);
-        etNewPassword = findViewById(R.id.password_new_edit);
+        etPassword = findViewById(R.id.password_edit);
 
         etUsername.setText(user.getUsername());
         etEmail.setText(user.getEmail());
@@ -203,9 +203,83 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
         return false;
     }
 
+    public void editUser(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.edit_dialog) + user.getUsername())
+                .setMessage(R.string.submit_changes)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    UserDTO userDTO = new UserDTO(etUsername.getText().toString(), etEmail.getText().toString(), etPassword.getText().toString(),
+                            (float) currentPoint.latitude(), (float) currentPoint.longitude());
+
+                    presenter.updateUser(getPrefs().getLong(PREFERENCES_ID, 0), userDTO);
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show();
+    }
+
+    @Override
+    public void showUpdateUserSuccessDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.success)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    navigateToStoresMap();
+                })
+                .show();
+    }
+
+    @Override
+    public void showUpdateUserErrorDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.error_user_update)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
+
+    public void deleteUser(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.delete_dialog) + user.getUsername())
+                .setMessage(R.string.submit_delete)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    presenter.deleteUser(prefs.getLong(PREFERENCES_ID, 0));
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show();
+    }
+
+    @Override
+    public void showDeleteUserSuccessDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.success)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    navigateToMain();
+                })
+                .show();
+    }
+
+    @Override
+    public void showDeleteUserErrorDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.error_user_delete)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
+
     @Override
     public void navigateToStoresMap() {
         Intent intent = new Intent(this, StoresMapView.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void navigateToMain() {
+        editor.remove(PREFERENCES_ID);
+        editor.apply();
+        Intent intent = new Intent(this, MainView.class);
         startActivity(intent);
         finish();
     }

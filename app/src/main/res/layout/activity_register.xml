@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".view.EditUserView">
+    tools:context=".view.RegisterView">
 
     <TextView
         android:id="@+id/title_register"
@@ -76,7 +76,7 @@
             app:mapbox_cameraPitch="0.0"
             app:mapbox_cameraTargetLat="0"
             app:mapbox_cameraTargetLng="0"
-            app:mapbox_cameraZoom="1.0"></com.mapbox.maps.MapView>
+            app:mapbox_cameraZoom="1.0" />
 
         <ImageButton
             android:id="@+id/locate_register"
