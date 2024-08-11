@@ -8,13 +8,18 @@
         android:title="Item"
         app:showAsAction="always" />
     <item
+        android:id="@+id/action_highlights"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="Item"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_map"
         android:icon="@android:drawable/ic_dialog_map"
-        android:title="action"
+        android:title="Item"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_logout"
         android:icon="@drawable/logout"
-        android:title="logout"
+        android:title="Item"
         app:showAsAction="always" />
 </menu>
