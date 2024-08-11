@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.gson.Gson;
+import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.api.UserApi;
 import com.svalero.comicbookstoresapp.api.UserApiInterface;
 import com.svalero.comicbookstoresapp.contract.EditUserContract;
@@ -69,12 +70,12 @@ public class EditUserModel implements EditUserContract.Model {
                         if (location != null) {
                             listener.onLocationReceived(location.getLatitude(), location.getLongitude());
                         } else {
-                            listener.onLocationError("Unable to retrieve location.");
+                            listener.onLocationError(context.getString(R.string.unable_to_retrieve_location));
                         }
                     })
                     .addOnFailureListener(e -> listener.onLocationError(e.getMessage()));
         } else {
-            listener.onLocationError("Location permission not granted.");
+            listener.onLocationError(context.getString(R.string.location_permission_not_granted));
         }
     }
 }

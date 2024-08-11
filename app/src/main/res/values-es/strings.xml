@@ -25,4 +25,8 @@
     <string name="error_fetching_user_data">Error recabando los datos de usuario</string>
     <string name="new_password">Contraseña nueva</string>
     <string name="current_password">Contraseña actual</string>
+    <string name="gps_cannot_be_accessed">No se puede acceder al GPS</string>
+    <string name="unable_to_retrieve_location">No se puede obtener la ubicación</string>
+    <string name="location_permission_not_granted">No se han otorgado permisos de localización</string>
+    <string name="failed_to_load_reviews">Error cargando las reviews</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.svalero.comicbookstoresapp.model;
 
 import android.util.Log;
+
+import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.api.ReviewApi;
 import com.svalero.comicbookstoresapp.api.ReviewApiInterface;
 import com.svalero.comicbookstoresapp.contract.StoreDetailsContract;
@@ -24,7 +26,7 @@ public class StoreDetailsModel implements StoreDetailsContract.Model {
                     List<Review> reviews = response.body();
                     listener.onLoadReviewsSuccess(reviews);
                 } else {
-                    listener.onLoadReviewsError("Failed to load reviews");
+//                    listener.onLoadReviewsError(context.getString(R.string.failed_to_load_reviews));
                 }
             }
 

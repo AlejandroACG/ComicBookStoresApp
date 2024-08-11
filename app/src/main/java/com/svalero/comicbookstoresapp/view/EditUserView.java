@@ -91,14 +91,18 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
     }
 
     private void initializeMapView() {
-        mapView = findViewById(R.id.map_edit);
-        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, this);
+        if (mapView == null) {
+            mapView = findViewById(R.id.map_edit);
+            mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, this);
+        }
     }
 
     private void initializePointAnnotationManager() {
-        AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(mapView);
-        AnnotationConfig annotationConfig = new AnnotationConfig();
-        pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
+        if (pointAnnotationManager == null) {
+            AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(mapView);
+            AnnotationConfig annotationConfig = new AnnotationConfig();
+            pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
+        }
     }
 
     private void initializeGesturesPlugin() {
@@ -161,8 +165,10 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
     }
 
     public void addNoGPSMarker() {
-        CameraState cameraState = mapView.getMapboxMap().getCameraState();
-        addMarker(cameraState.getCenter().latitude(), cameraState.getCenter().longitude(), getString(R.string.no_gps_signal));
+        if (pointAnnotationManager.getAnnotations().isEmpty()) {
+            CameraState cameraState = mapView.getMapboxMap().getCameraState();
+            addMarker(cameraState.getCenter().latitude(), cameraState.getCenter().longitude(), getString(R.string.no_gps_signal));
+        }
     }
 
     private void setCamera(double latitude, double longitude, String message, double zoom) {
