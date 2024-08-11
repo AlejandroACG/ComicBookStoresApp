@@ -31,13 +31,12 @@ public interface EditUserContract {
     }
 
     interface View {
+        void setupUserData(User user);
         void showGetUserErrorDialog(String message);
         void showUpdateUserSuccessDialog(String message);
         void showUpdateUserErrorDialog(String message);
         void showDeleteUserSuccessDialog(String message);
         void showDeleteUserErrorDialog(String message);
-        void navigateToStoresMap();
-        void navigateToMain();
         void showPermissionDeniedError();
         void showLocation(double latitude, double longitude);
         void showLocationError(String message);

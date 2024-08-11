@@ -14,7 +14,6 @@ public interface LoginContract {
     interface View {
         void showLoginSuccessDialog(String message);
         void showLoginErrorDialog(String message);
-        void navigateToStoresMap();
     }
 
     interface Presenter {

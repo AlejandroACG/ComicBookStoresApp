@@ -212,7 +212,6 @@ public class RegisterView extends OuterBaseActivity implements RegisterContract.
                 .show();
     }
 
-    @Override
     public void navigateToStoresMap() {
         Intent intent = new Intent(this, StoresMapView.class);
         startActivity(intent);

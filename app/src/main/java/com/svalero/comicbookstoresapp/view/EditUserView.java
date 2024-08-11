@@ -76,7 +76,8 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
         presenter.getUser(getPrefs().getLong(PREFERENCES_ID, 0));
     }
 
-    public void setUser(User user) {
+    @Override
+    public void setupUserData(User user) {
         this.user = user;
         showLocation(user.getLatitude(), user.getLongitude());
         setupInputFields();
@@ -205,7 +206,7 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
 
     public void editUser(View view) {
         new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.edit_dialog) + user.getUsername())
+                .setTitle(getString(R.string.edit_dialog) + " " + user.getUsername())
                 .setMessage(R.string.submit_changes)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     UserDTO userDTO = new UserDTO(etUsername.getText().toString(), etEmail.getText().toString(), etPassword.getText().toString(),
@@ -239,7 +240,7 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
 
     public void deleteUser(View view) {
         new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.delete_dialog) + user.getUsername())
+                .setTitle(getString(R.string.delete_dialog) + " " + user.getUsername())
                 .setMessage(R.string.submit_delete)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     presenter.deleteUser(prefs.getLong(PREFERENCES_ID, 0));
@@ -268,14 +269,12 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
                 .show();
     }
 
-    @Override
     public void navigateToStoresMap() {
         Intent intent = new Intent(this, StoresMapView.class);
         startActivity(intent);
         finish();
     }
 
-    @Override
     public void navigateToMain() {
         editor.remove(PREFERENCES_ID);
         editor.apply();

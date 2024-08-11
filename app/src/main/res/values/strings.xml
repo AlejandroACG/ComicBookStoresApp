@@ -15,13 +15,13 @@
     <string name="permission_denied">Access to location not granted</string>
     <string name="error_empty_fields">Please fill all the fields</string>
     <string name="no_gps_signal">No GPS Signal</string>
-    <string name="registered_successfully"> registered successfully</string>
+    <string name="registered_successfully">registered successfully</string>
     <string name="success">Success</string>
     <string name="logout">logout</string>
-    <string name="map">map</string>
     <string name="login_successful">Login successful</string>
     <string name="error_login">Login failed</string>
     <string name="error_user_get">Error fetching user data</string>
+    <string name="error_stores_get">Error fetching stores data</string>
     <string name="gps_cannot_be_accessed">GPS cannot be accessed</string>
     <string name="unable_to_retrieve_location">Unable to retrieve location</string>
     <string name="location_permission_not_granted">Location permission not granted</string>
@@ -30,10 +30,10 @@
     <string name="error_user_delete">User Couldn\'t Be Deleted</string>
     <string name="edited_successfully">" edited successfully"</string>
     <string name="deleted_successfully">User deleted successfully</string>
-    <string name="edit_dialog">"Edit "</string>
+    <string name="edit_dialog">Edit</string>
     <string name="submit_changes">Submit changes?</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="delete_dialog">"Delete "</string>
+    <string name="delete_dialog">Delete</string>
     <string name="submit_delete">Delete user?</string>
 </resources>

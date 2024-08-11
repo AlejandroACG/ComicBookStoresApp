@@ -16,10 +16,9 @@
     <string name="permission_denied">No se ha autorizado el acceso a la localización</string>
     <string name="error_empty_fields">Por favor, rellene todos los campos</string>
     <string name="no_gps_signal">No hay señal de GPS</string>
-    <string name="registered_successfully">" registrado con éxito"</string>
+    <string name="registered_successfully">registrado con éxito</string>
     <string name="success">Éxito</string>
     <string name="logout">desloguear</string>
-    <string name="map">mapa</string>
     <string name="login_successful">Login exitoso</string>
     <string name="error_login">Error al logear</string>
     <string name="error_user_get">Error recabando los datos de usuario</string>
@@ -30,11 +29,12 @@
     <string name="error_user_update">No se pudo editar al usuario</string>
     <string name="error_user_delete">No se pudo eliminar al usuario</string>
     <string name="deleted_successfully">Usuario eliminado con éxito</string>
-    <string name="edited_successfully">" editado con éxito"</string>
+    <string name="edited_successfully"> editado con éxito</string>
     <string name="edit_dialog">Editar</string>
     <string name="submit_changes">¿Confirmar cambios?</string>
     <string name="ok">Aceptar</string>
     <string name="cancel">Cancelar</string>
-    <string name="delete_dialog">"Eliminar "</string>
+    <string name="delete_dialog">Eliminar</string>
     <string name="submit_delete">¿Eliminar usuario?</string>
+    <string name="error_stores_get">Error recabando los datos de tiendas</string>
 </resources>

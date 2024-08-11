@@ -71,7 +71,6 @@ public class LoginView extends OuterBaseActivity implements LoginContract.View {
                 .show();
     }
 
-    @Override
     public void navigateToStoresMap() {
         Intent intent = new Intent(this, StoresMapView.class);
         startActivity(intent);

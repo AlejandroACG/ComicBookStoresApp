@@ -26,7 +26,7 @@ public class EditUserPresenter implements EditUserContract.Presenter, EditUserCo
 
     @Override
     public void onGetUserSuccess(User user) {
-        view.setUser(user);
+        view.setupUserData(user);
     }
 
     @Override

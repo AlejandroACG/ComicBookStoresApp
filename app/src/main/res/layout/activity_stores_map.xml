@@ -7,4 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".view.StoresMapView">
 
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/map_stores"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mapbox_cameraBearing="0.0"
+            app:mapbox_cameraPitch="0.0"
+            app:mapbox_cameraTargetLat="0"
+            app:mapbox_cameraTargetLng="0"
+            app:mapbox_cameraZoom="1.0" />
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

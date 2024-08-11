@@ -7,4 +7,5 @@ public class Constants {
     public static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     public static final double ZOOM_IN = 12;
     public static final String PREFERENCES_ID = "USER_ID";
+    public static final String STORE_ID = "STORE_ID";
 }

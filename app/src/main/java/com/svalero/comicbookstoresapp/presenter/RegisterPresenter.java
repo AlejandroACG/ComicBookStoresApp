@@ -34,7 +34,7 @@ public class RegisterPresenter implements RegisterContract.Presenter, RegisterCo
         view.getEditor().putLong(PREFERENCES_ID, user.getId());
         view.getEditor().apply();
 
-        view.showSaveUserSuccessDialog(user.getUsername() + view.getString(R.string.registered_successfully));
+        view.showSaveUserSuccessDialog(user.getUsername() + " " + view.getString(R.string.registered_successfully));
     }
 
     @Override

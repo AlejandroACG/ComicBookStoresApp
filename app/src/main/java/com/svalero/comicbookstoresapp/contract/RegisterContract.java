@@ -21,7 +21,6 @@ public interface RegisterContract {
     interface View {
         void showSaveUserSuccessDialog(String message);
         void showSaveUserErrorDialog(String message);
-        void navigateToStoresMap();
         void showPermissionDeniedError();
         void showLocation(double latitude, double longitude);
         void showLocationError(String message);
