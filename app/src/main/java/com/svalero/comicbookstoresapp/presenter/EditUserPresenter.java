@@ -83,7 +83,7 @@ public class EditUserPresenter implements EditUserContract.Presenter, EditUserCo
 
     @Override
     public void onDeleteUserSuccess() {
-        view.showDeleteUserSuccessDialog(view.getString(R.string.deleted_successfully));
+        view.showDeleteUserSuccessDialog(view.getString(R.string.user_deleted_successfully));
     }
 
     @Override

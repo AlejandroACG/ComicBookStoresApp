@@ -10,9 +10,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ReviewApiInterface {
-    @GET("store-reviews")
-    Call<List<Review>> getReviews();
-
     @POST("store-reviews")
     Call<Review> createReview(@Body Review review);
 

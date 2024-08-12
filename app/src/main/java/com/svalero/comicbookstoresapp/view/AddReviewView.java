@@ -8,12 +8,12 @@ import androidx.core.view.WindowInsetsCompat;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.util.InnerBaseActivity;
 
-public class AddEditReviewView extends InnerBaseActivity {
+public class AddReviewView extends InnerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_edit_review);
+        setContentView(R.layout.activity_add_review);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

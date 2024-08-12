@@ -3,10 +3,10 @@ package com.svalero.comicbookstoresapp.view;
 import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
 import static com.svalero.comicbookstoresapp.util.Constants.STORE_ID;
 import static com.svalero.comicbookstoresapp.util.Constants.ZOOM_IN;
-
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.activity.EdgeToEdge;
@@ -24,9 +24,6 @@ import com.mapbox.maps.extension.style.layers.properties.generated.IconAnchor;
 import com.mapbox.maps.plugin.annotation.AnnotationConfig;
 import com.mapbox.maps.plugin.annotation.AnnotationPlugin;
 import com.mapbox.maps.plugin.annotation.AnnotationPluginImplKt;
-import com.mapbox.maps.plugin.annotation.OnAnnotationClickListener;
-import com.mapbox.maps.plugin.annotation.generated.OnPointAnnotationClickListener;
-import com.mapbox.maps.plugin.annotation.generated.PointAnnotation;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManagerKt;
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
@@ -113,7 +110,7 @@ public class StoresMapView extends InnerBaseActivity implements StoresMapContrac
             AnnotationConfig annotationConfig = new AnnotationConfig();
             pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
             pointAnnotationManager.addClickListener(annotation -> {
-                int markerId = Objects.requireNonNull(annotation.getData()).getAsJsonObject().get("id").getAsInt();
+                Long markerId = Objects.requireNonNull(annotation.getData()).getAsJsonObject().get("id").getAsLong();
 
                 if (markerId >= 0) {
                     Intent intent = new Intent(StoresMapView.this, StoreDetailsView.class);
@@ -141,7 +138,7 @@ public class StoresMapView extends InnerBaseActivity implements StoresMapContrac
     public void addStoreMarkers(List<Store> stores) {
         int i = 0;
         for (Store store : stores) {
-            addMarker(store.getLatitude(), store.getLongitude(), store.getName(), i, R.mipmap.purple_marker_foreground);
+            addMarker(store.getLatitude(), store.getLongitude(), store.getName(), store.getId(), R.mipmap.purple_marker_foreground);
             i++;
         }
     }
@@ -162,7 +159,7 @@ public class StoresMapView extends InnerBaseActivity implements StoresMapContrac
 
     @Override
     public void addUserMarker(User user) {
-        addMarker(user.getLatitude(), user.getLongitude(), "Home", -1, R.mipmap.home_marker_foreground);
+        addMarker(user.getLatitude(), user.getLongitude(), "Home", (long) -1, R.mipmap.home_marker_foreground);
         mapView.getMapboxMap().setCamera(
                 new CameraOptions.Builder()
                         .center(Point.fromLngLat(user.getLongitude(), user.getLatitude()))
@@ -180,7 +177,7 @@ public class StoresMapView extends InnerBaseActivity implements StoresMapContrac
                 .show();
     }
 
-    private void addMarker(double latitude, double longitude, String title, Integer markerId, Integer marker) {
+    private void addMarker(double latitude, double longitude, String title, Long markerId, Integer marker) {
         JsonObject markerData = new JsonObject();
         markerData.addProperty("id", markerId);
         markerData.addProperty("title", title);

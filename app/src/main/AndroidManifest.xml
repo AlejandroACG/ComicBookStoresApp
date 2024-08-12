@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.AddEditReviewView"
+            android:name=".view.AddReviewView"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

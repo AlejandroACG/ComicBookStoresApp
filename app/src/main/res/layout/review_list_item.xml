@@ -44,7 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:onClick="navigateToEditReview"
         android:text="@string/edit"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/review_content" />
 
@@ -54,7 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:onClick="deleteReview"
         android:text="@string/delete"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/review_edit"
         app:layout_constraintTop_toBottomOf="@+id/review_content" />
 

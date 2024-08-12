@@ -1,12 +1,14 @@
 package com.svalero.comicbookstoresapp.presenter;
 
+import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.contract.StoreDetailsContract;
-import com.svalero.comicbookstoresapp.domain.Review;
+import com.svalero.comicbookstoresapp.domain.Store;
+import com.svalero.comicbookstoresapp.domain.User;
 import com.svalero.comicbookstoresapp.model.StoreDetailsModel;
 import com.svalero.comicbookstoresapp.view.StoreDetailsView;
-import java.util.List;
 
-public class StoreDetailsPresenter implements StoreDetailsContract.Presenter, StoreDetailsContract.Model.OnLoadReviewsListener {
+public class StoreDetailsPresenter implements StoreDetailsContract.Presenter, StoreDetailsContract.Model.OnGetUserListener,
+        StoreDetailsContract.Model.OnGetStoreListener {
     private StoreDetailsView view;
     private StoreDetailsModel model;
 
@@ -16,17 +18,30 @@ public class StoreDetailsPresenter implements StoreDetailsContract.Presenter, St
     }
 
     @Override
-    public void loadAllReviews() {
-        model.loadAllReviews(this);
+    public void getUser(Long id) { model.getUser(id, this); }
+
+    @Override
+    public void onGetUserSuccess(User user) { view.loadUser(user); }
+
+    @Override
+    public void onGetUserError(String message) {
+        if (message.isEmpty()) {
+            message = view.getString(R.string.unexpected_error);
+        }
+        view.showGetUserError(message);
     }
 
     @Override
-    public void onLoadReviewsSuccess(List<Review> reviews) {
-        view.listReviews(reviews);
-    }
+    public void getStore(Long id) { model.getStore(id, this); }
 
     @Override
-    public void onLoadReviewsError(String message) {
-        view.showMessage(message);
+    public void onGetStoreSuccess(Store store) { view.setupStore(store); }
+
+    @Override
+    public void onGetStoreError(String message) {
+        if (message.isEmpty()) {
+            message = view.getString(R.string.unexpected_error);
+        }
+        view.showGetUserError(message);
     }
 }

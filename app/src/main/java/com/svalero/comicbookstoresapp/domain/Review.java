@@ -1,7 +1,5 @@
 package com.svalero.comicbookstoresapp.domain;
 
-import java.time.LocalDate;
-
 public class Review {
     private Long id;
     private String title;
