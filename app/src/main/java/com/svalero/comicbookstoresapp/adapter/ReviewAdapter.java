@@ -39,6 +39,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
         holder.tvContent.setText(currentReview.getContent());
         holder.tvRating.setText(String.valueOf(currentReview.getRating()));
         holder.tvDate.setText(String.valueOf(currentReview.getDate()));
+        holder.itemView.setTag(currentReview.getId());
 
         if (user.getStoreReviews() != null ) {
             for (Review userReview : user.getStoreReviews()) {
