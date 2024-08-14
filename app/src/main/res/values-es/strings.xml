@@ -35,9 +35,15 @@
     <string name="ok">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <string name="delete_dialog">Eliminar</string>
-    <string name="submit_delete">¿Eliminar usuario?</string>
+    <string name="submit_delete_user">¿Eliminar usuario?</string>
     <string name="error_stores_get">Error recabando los datos de tiendas</string>
     <string name="review_deleted_successfully">Review eliminada con éxito</string>
     <string name="error_loading_reviews">No se han podido cargar las reviews</string>
     <string name="error_loading_store">No se pudo cargar la tienda</string>
+    <string name="post_review">Postear Review</string>
+    <string name="title">Título</string>
+    <string name="content">Contenido</string>
+    <string name="post">Postear</string>
+    <string name="review_posted_successfully">Review posteada con éxito</string>
+    <string name="error_post_review">No se pudo postear la review</string>
 </resources>

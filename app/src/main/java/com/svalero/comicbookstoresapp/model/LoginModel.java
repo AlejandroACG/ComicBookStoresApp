@@ -7,7 +7,7 @@ import com.svalero.comicbookstoresapp.api.UserApiInterface;
 import com.svalero.comicbookstoresapp.contract.LoginContract;
 import com.svalero.comicbookstoresapp.domain.ApiError;
 import com.svalero.comicbookstoresapp.dto.LoginDTO;
-import com.svalero.comicbookstoresapp.dto.idDTO;
+import com.svalero.comicbookstoresapp.dto.IdDTO;
 import java.io.IOException;
 import java.util.Objects;
 import retrofit2.Call;
@@ -18,10 +18,10 @@ public class LoginModel implements LoginContract.Model {
     @Override
     public void login(LoginDTO loginDTO, OnLoginListener listener) {
         UserApiInterface api = UserApi.buildInstance();
-        Call<idDTO> loginCall = api.login(loginDTO);
-        loginCall.enqueue(new Callback<idDTO>() {
+        Call<IdDTO> loginCall = api.login(loginDTO);
+        loginCall.enqueue(new Callback<IdDTO>() {
             @Override
-            public void onResponse(Call<idDTO> call, Response<idDTO> response) {
+            public void onResponse(Call<IdDTO> call, Response<IdDTO> response) {
                 Log.e("login", response.message());
                 if (response.isSuccessful() && response.body() != null) {
                     Long id = response.body().getId();
@@ -40,7 +40,7 @@ public class LoginModel implements LoginContract.Model {
             }
 
             @Override
-            public void onFailure(Call<idDTO> call, Throwable t) {
+            public void onFailure(Call<IdDTO> call, Throwable t) {
                 Log.e("login", Objects.requireNonNull(t.getMessage()));
                 listener.onLoginError("");
             }

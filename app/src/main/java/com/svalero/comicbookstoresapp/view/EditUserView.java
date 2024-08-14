@@ -241,7 +241,7 @@ public class EditUserView extends InnerBaseActivity implements EditUserContract.
     public void deleteUser(View view) {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.delete_dialog) + " " + user.getUsername())
-                .setMessage(R.string.submit_delete)
+                .setMessage(R.string.submit_delete_user)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     presenter.deleteUser(prefs.getLong(PREFERENCES_ID, 0));
                 })

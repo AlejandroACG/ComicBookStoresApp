@@ -5,6 +5,7 @@ import static com.svalero.comicbookstoresapp.util.Constants.STORE_ID;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsContract.View {
+    private Long id;
     private ReviewAdapter adapter;
     private StoreDetailsPresenter presenter;
     private TextView tvName;
@@ -32,6 +34,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
     private TextView tvPhone;
     private TextView tvWebsite;
     private TextView tvEmail;
+    private Button btnAddReview;
     private List<Review> reviews;
 
     @Override
@@ -51,19 +54,21 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
     protected void onStart() {
         super.onStart();
 
-        setUpFields();
+        setUpElements();
         reviews = new ArrayList<>();
         presenter = new StoreDetailsPresenter(this);
 
-        presenter.getStore(getIntent().getLongExtra(STORE_ID, 0));
+        id = getIntent().getLongExtra(STORE_ID, 0);
+        presenter.getStore(id);
     }
 
-    private void setUpFields() {
+    private void setUpElements() {
         tvName = findViewById(R.id.store_name);
         tvAddress = findViewById(R.id.store_address);
         tvPhone = findViewById(R.id.store_phone);
         tvWebsite = findViewById(R.id.store_website);
         tvEmail = findViewById(R.id.store_email);
+        btnAddReview = findViewById(R.id.btn_add_review);
     }
 
     @Override
@@ -85,6 +90,8 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         tvPhone.setText(store.getPhone());
         tvWebsite.setText(store.getWebsite());
         tvEmail.setText(store.getEmail());
+
+        btnAddReview.setVisibility(View.VISIBLE);
 
         presenter.getUser(prefs.getLong(PREFERENCES_ID, 0));
     }
@@ -126,6 +133,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
 
     public void addReview(View view) {
         Intent intent = new Intent(this, AddReviewView.class);
+        intent.putExtra(STORE_ID, id);
         startActivity(intent);
     }
 }

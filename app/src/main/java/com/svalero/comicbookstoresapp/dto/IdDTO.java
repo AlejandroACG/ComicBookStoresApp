@@ -1,9 +1,9 @@
 package com.svalero.comicbookstoresapp.dto;
 
-public class idDTO {
+public class IdDTO {
     private Long id;
 
-    public idDTO(Long id) {
+    public IdDTO(Long id) {
         this.id = id;
     }
 

@@ -4,14 +4,12 @@ public class Review {
     private Long id;
     private String title;
     private String content;
-    private Float rating;
     private String date;
 
-    public Review(Long id, String title, String content, float rating, String date) {
+    public Review(Long id, String title, String content, String date) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.rating = rating;
         this.date = date;
     }
 
@@ -37,14 +35,6 @@ public class Review {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
     }
 
     public String getDate() {

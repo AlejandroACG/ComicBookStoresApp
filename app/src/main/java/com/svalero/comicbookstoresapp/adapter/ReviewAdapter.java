@@ -37,7 +37,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
         holder.tvTitle.setText(currentReview.getTitle());
         holder.tvContent.setText(currentReview.getContent());
-        holder.tvRating.setText(String.valueOf(currentReview.getRating()));
         holder.tvDate.setText(String.valueOf(currentReview.getDate()));
         holder.itemView.setTag(currentReview.getId());
 
@@ -61,7 +60,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
     public class ReviewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitle;
         public TextView tvContent;
-        public TextView tvRating;
         public TextView tvDate;
         public Button btnEdit;
         public Button btnDelete;
@@ -73,7 +71,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
             tvTitle = view.findViewById(R.id.review_title);
             tvContent = view.findViewById(R.id.review_content);
-            tvRating = view.findViewById(R.id.review_rating);
             tvDate = view.findViewById(R.id.review_date);
             btnEdit = view.findViewById(R.id.review_edit);
             btnDelete = view.findViewById(R.id.review_delete);

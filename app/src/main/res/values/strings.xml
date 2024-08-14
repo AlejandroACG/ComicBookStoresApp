@@ -12,12 +12,14 @@
     <string name="here">Here</string>
     <string name="unexpected_error">Unexpected Error</string>
     <string name="error_user_register">User Couldn\'t Be Registered</string>
+    <string name="error_post_review">Review Couldn\'t Be Posted</string>
     <string name="error_loading_reviews">Reviews Couldn\'t Be Loaded</string>
     <string name="error_loading_store">Store Couldn\'t Be Loaded</string>
     <string name="permission_denied">Access to location not granted</string>
     <string name="error_empty_fields">Please fill all the fields</string>
     <string name="no_gps_signal">No GPS Signal</string>
     <string name="registered_successfully">registered successfully</string>
+    <string name="review_posted_successfully">Review posted successfully</string>
     <string name="success">Success</string>
     <string name="logout">logout</string>
     <string name="login_successful">Login successful</string>
@@ -38,5 +40,9 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="delete_dialog">Delete</string>
-    <string name="submit_delete">Delete user?</string>
+    <string name="submit_delete_user">Delete user?</string>
+    <string name="post_review">Post Review</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="post">Post</string>
 </resources>

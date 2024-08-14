@@ -3,7 +3,7 @@ package com.svalero.comicbookstoresapp.api;
 import com.svalero.comicbookstoresapp.domain.User;
 import com.svalero.comicbookstoresapp.dto.LoginDTO;
 import com.svalero.comicbookstoresapp.dto.UserDTO;
-import com.svalero.comicbookstoresapp.dto.idDTO;
+import com.svalero.comicbookstoresapp.dto.IdDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -17,7 +17,7 @@ public interface UserApiInterface {
     Call<User> createUser(@Body UserDTO userDTO);
 
     @POST("user/login")
-    Call<idDTO> login(@Body LoginDTO loginDTO);
+    Call<IdDTO> login(@Body LoginDTO loginDTO);
 
     @GET("user/{id}")
     Call<User> getUser(@Path("id") long id);
