@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.LoginView">
+    tools:context=".view.EditReviewView">
 
     <TextView
-        android:id="@+id/login_title"
+        android:id="@+id/edit_title_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/login"
+        android:layout_marginTop="60dp"
+        android:text="@string/edit_review"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,40 +20,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="295dp"
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_title">
+        app:layout_constraintTop_toBottomOf="@+id/edit_title_review">
 
         <EditText
-            android:id="@+id/username_login"
+            android:id="@+id/edit_review_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:ems="10"
-            android:hint="@string/username"
+            android:hint="@string/title"
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/password_login"
+            android:id="@+id/edit_review_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="387dp"
+            android:layout_margin="5dp"
             android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:gravity="start"
+            android:hint="@string/content"
+            android:inputType="text" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_login_2"
+        android:id="@+id/btn_edit_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:onClick="login"
-        android:text="@string/login"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="editReview"
+        android:text="@string/edit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

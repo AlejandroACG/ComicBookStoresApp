@@ -1,6 +1,7 @@
 package com.svalero.comicbookstoresapp.view;
 
 import static com.svalero.comicbookstoresapp.util.Constants.PREFERENCES_ID;
+import static com.svalero.comicbookstoresapp.util.Constants.REVIEW_ID;
 import static com.svalero.comicbookstoresapp.util.Constants.STORE_ID;
 import android.content.Intent;
 import android.os.Bundle;
@@ -134,6 +135,50 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
     public void addReview(View view) {
         Intent intent = new Intent(this, AddReviewView.class);
         intent.putExtra(STORE_ID, id);
+        startActivity(intent);
+    }
+
+    public void navigateToEditReview(View view) {
+        Intent intent = new Intent(this, EditReviewView.class);
+        intent.putExtra(REVIEW_ID, (Long) view.getTag());
+        startActivity(intent);
+    }
+
+    public void deleteReview(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.delete_dialog_review))
+                .setMessage(R.string.submit_delete_review)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    presenter.deleteReview((Long) view.getTag());
+                })
+                .setNegativeButton(getString(R.string.cancel), null)
+                .show();
+    }
+
+    @Override
+    public void showDeleteReviewSuccessDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.success)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    navigateToStoreDetails();
+                })
+                .show();
+    }
+
+    @Override
+    public void showDeleteReviewErrorDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.error_review_delete)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
+
+    private void navigateToStoreDetails() {
+        Intent intent = new Intent(this, StoreDetailsView.class);
+        intent.putExtra(STORE_ID, id);
+        finish();
         startActivity(intent);
     }
 }

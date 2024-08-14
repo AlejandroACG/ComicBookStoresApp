@@ -1,9 +1,7 @@
 package com.svalero.comicbookstoresapp.contract;
 
-import com.svalero.comicbookstoresapp.domain.Review;
 import com.svalero.comicbookstoresapp.domain.Store;
 import com.svalero.comicbookstoresapp.domain.User;
-import java.util.List;
 
 public interface StoreDetailsContract {
     interface Model {
@@ -18,6 +16,12 @@ public interface StoreDetailsContract {
             void onGetStoreError(String message);
         }
         void getStore(Long id, OnGetStoreListener listener);
+
+        interface OnDeleteReviewListener {
+            void onDeleteReviewSuccess();
+            void onDeleteReviewError(String message);
+        }
+        void deleteReview(Long id, StoreDetailsContract.Model.OnDeleteReviewListener listener);
     }
 
     interface View {
@@ -26,10 +30,13 @@ public interface StoreDetailsContract {
         void showGetUserError(String message);
         void setupStore(Store store);
         void showGetStoreError(String message);
+        void showDeleteReviewSuccessDialog(String message);
+        void showDeleteReviewErrorDialog(String message);
     }
 
     interface Presenter {
         void getUser(Long id);
         void getStore(Long id);
+        void deleteReview(Long id);
     }
 }

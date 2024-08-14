@@ -49,7 +49,7 @@ public class AddReviewView extends InnerBaseActivity implements AddReviewContrac
         etContent = findViewById(R.id.create_review_content);
     }
 
-    public void addReview(View view) {
+    public void postReview(View view) {
         String title = etTitle.getText().toString();
         String content = etContent.getText().toString();
 

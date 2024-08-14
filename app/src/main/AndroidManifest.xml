@@ -19,15 +19,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.EditReviewView"
+            android:exported="false" />
+        <activity
             android:name=".view.RegisterView"
             android:exported="false"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".view.LoginView"
             android:exported="false"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
         <activity
             android:name=".view.StoresMapView"
             android:exported="true"
@@ -53,8 +56,8 @@
         <activity
             android:name=".view.MainView"
             android:exported="false"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
     </application>
 
 </manifest>

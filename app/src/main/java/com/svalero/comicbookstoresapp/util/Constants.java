@@ -8,4 +8,5 @@ public class Constants {
     public static final double ZOOM_IN = 12;
     public static final String PREFERENCES_ID = "USER_ID";
     public static final String STORE_ID = "STORE_ID";
+    public static final String REVIEW_ID = "REVIEW_ID";
 }

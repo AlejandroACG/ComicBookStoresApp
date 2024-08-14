@@ -2,6 +2,8 @@ package com.svalero.comicbookstoresapp.model;
 
 import android.util.Log;
 import com.google.gson.Gson;
+import com.svalero.comicbookstoresapp.api.ReviewApi;
+import com.svalero.comicbookstoresapp.api.ReviewApiInterface;
 import com.svalero.comicbookstoresapp.api.StoreApi;
 import com.svalero.comicbookstoresapp.api.StoreApiInterface;
 import com.svalero.comicbookstoresapp.api.UserApi;
@@ -77,6 +79,37 @@ public class StoreDetailsModel implements StoreDetailsContract.Model {
             public void onFailure(Call<Store> call, Throwable t) {
                 Log.e("getStore", Objects.requireNonNull(t.getMessage()));
                 listener.onGetStoreError("");
+            }
+        });
+    }
+
+    @Override
+    public void deleteReview(Long id, StoreDetailsContract.Model.OnDeleteReviewListener listener) {
+        ReviewApiInterface api = ReviewApi.buildInstance();
+        Call<Void> deleteReviewCall = api.deleteReview(id);
+        deleteReviewCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.e("deleteReview", response.message());
+                if (response.isSuccessful()) {
+                    listener.onDeleteReviewSuccess();
+                } else {
+                    Log.e("deleteReview", response.message());
+                    ApiError apiError = null;
+                    try {
+                        apiError = new Gson().fromJson(response.errorBody().string(), ApiError.class);
+                    } catch (IOException e) {
+                        listener.onDeleteReviewError("");
+                        throw new RuntimeException(e);
+                    }
+                    listener.onDeleteReviewError(apiError.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("deleteReview", Objects.requireNonNull(t.getMessage()));
+                listener.onDeleteReviewError("");
             }
         });
     }

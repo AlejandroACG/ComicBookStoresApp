@@ -8,7 +8,7 @@ import com.svalero.comicbookstoresapp.model.StoreDetailsModel;
 import com.svalero.comicbookstoresapp.view.StoreDetailsView;
 
 public class StoreDetailsPresenter implements StoreDetailsContract.Presenter, StoreDetailsContract.Model.OnGetUserListener,
-        StoreDetailsContract.Model.OnGetStoreListener {
+        StoreDetailsContract.Model.OnGetStoreListener, StoreDetailsContract.Model.OnDeleteReviewListener {
     private StoreDetailsView view;
     private StoreDetailsModel model;
 
@@ -42,6 +42,24 @@ public class StoreDetailsPresenter implements StoreDetailsContract.Presenter, St
         if (message.isEmpty()) {
             message = view.getString(R.string.unexpected_error);
         }
-        view.showGetUserError(message);
+        view.showGetStoreError(message);
+    }
+
+    @Override
+    public void deleteReview(Long id) {
+        model.deleteReview(id, this);
+    }
+
+    @Override
+    public void onDeleteReviewSuccess() {
+        view.showDeleteReviewSuccessDialog(view.getString(R.string.review_deleted_successfully));
+    }
+
+    @Override
+    public void onDeleteReviewError(String message) {
+        if (message.isEmpty()) {
+            message = view.getString(R.string.unexpected_error);
+        }
+        view.showDeleteReviewErrorDialog(message);
     }
 }
