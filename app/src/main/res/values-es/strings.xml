@@ -44,7 +44,7 @@
     <string name="title">Título</string>
     <string name="content">Contenido</string>
     <string name="post">Publicar</string>
-    <string name="review_posted_successfully">Reseña posteada con éxito</string>
+    <string name="review_posted_successfully">Reseña publicada con éxito</string>
     <string name="error_post_review">No se pudo publicar la reseña</string>
     <string name="edit_review">Editar reseña</string>
     <string name="review_edited_successfully">Reseña editada con éxito</string>

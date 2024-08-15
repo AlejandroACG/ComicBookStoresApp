@@ -28,6 +28,7 @@ import java.util.List;
 
 public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsContract.View, ReviewAdapter.OnReviewActionListener {
     private Long storeId;
+    private Store store;
     private ReviewAdapter adapter;
     private StoreDetailsPresenter presenter;
     private TextView tvName;
@@ -83,6 +84,8 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
 
     @Override
     public void setupStore(Store store) {
+        this.store = store;
+
         reviews.clear();
         reviews.addAll(store.getStoreReviews());
 
@@ -92,9 +95,8 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         tvWebsite.setText(store.getWebsite());
         tvEmail.setText(store.getEmail());
 
-        btnAddReview.setVisibility(View.VISIBLE);
-
         presenter.getUser(prefs.getLong(PREFERENCES_ID, 0));
+
     }
 
     @Override
@@ -115,6 +117,24 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        boolean hasReviewInStore = false;
+
+        for (Review storeReview : store.getStoreReviews()) {
+            for (Review userReview : user.getStoreReviews()) {
+                if (storeReview.getId().equals(userReview.getId())) {
+                    hasReviewInStore = true;
+                    break;
+                }
+            }
+            if (hasReviewInStore) {
+                break;
+            }
+        }
+
+        if (!hasReviewInStore) {
+            btnAddReview.setVisibility(View.VISIBLE);
+        }
 
         adapter = new ReviewAdapter(reviews, user, this);
         recyclerView.setAdapter(adapter);
