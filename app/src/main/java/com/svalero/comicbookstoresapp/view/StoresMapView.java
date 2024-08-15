@@ -72,31 +72,6 @@ public class StoresMapView extends InnerBaseActivity implements StoresMapContrac
         getUser();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_map) {
-            Intent intent = new Intent(this, StoresMapView.class);
-            startActivity(intent);
-            return true;
-        } else if (item.getItemId() == R.id.action_logout) {
-            editor.remove(PREFERENCES_ID);
-            editor.apply();
-            Intent intent = new Intent(this, MainView.class);
-            startActivity(intent);
-            finish();
-        } else if (item.getItemId() == R.id.action_profile) {
-            Intent intent = new Intent(this, EditUserView.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void initializeMapView() {
         if (mapView == null) {
             mapView = findViewById(R.id.map_stores);
