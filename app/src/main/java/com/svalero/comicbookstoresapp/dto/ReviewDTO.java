@@ -7,8 +7,8 @@ public class ReviewDTO {
     private String content;
 
     public ReviewDTO(Long userId, Long storeId, String title, String content) {
-        this.userId = userId;
         this.storeId = storeId;
+        this.userId = userId;
         this.title = title;
         this.content = content;
     }

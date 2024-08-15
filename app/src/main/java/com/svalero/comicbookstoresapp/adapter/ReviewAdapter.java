@@ -1,5 +1,8 @@
 package com.svalero.comicbookstoresapp.adapter;
 
+import static com.svalero.comicbookstoresapp.util.Constants.REVIEW_ID;
+
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.domain.Review;
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.view.EditReviewView;
+import com.svalero.comicbookstoresapp.view.StoreDetailsView;
+
 import java.util.List;
 import java.util.Objects;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHolder> {
     private final List<Review> reviews;
+    private final OnReviewActionListener listener;
     private final User user;
 
-    public ReviewAdapter(List<Review> reviews, User user) {
+    public ReviewAdapter(List<Review> reviews, User user, OnReviewActionListener listener) {
         this.reviews = reviews;
+        this.listener = listener;
         this.user = user;
     }
 
@@ -38,7 +46,18 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
         holder.tvTitle.setText(currentReview.getTitle());
         holder.tvContent.setText(currentReview.getContent());
         holder.tvDate.setText(String.valueOf(currentReview.getDate()));
+        Log.e("ReviewAdapter", "Setting tag: " + currentReview.getId());
         holder.itemView.setTag(currentReview.getId());
+
+        holder.btnEdit.setOnClickListener(v -> {
+            Long reviewId = (Long) holder.itemView.getTag();
+            listener.onEditReview(reviewId); // Llama al método en la View
+        });
+
+        holder.btnDelete.setOnClickListener(v -> {
+            Long reviewId = (Long) holder.itemView.getTag();
+            listener.onDeleteReview(reviewId); // Llama al método en la View
+        });
 
         if (user.getStoreReviews() != null ) {
             for (Review userReview : user.getStoreReviews()) {
@@ -75,5 +94,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
             btnEdit = view.findViewById(R.id.review_edit);
             btnDelete = view.findViewById(R.id.review_delete);
         }
+    }
+
+    public interface OnReviewActionListener {
+        void onEditReview(Long reviewId);
+        void onDeleteReview(Long reviewId);
     }
 }

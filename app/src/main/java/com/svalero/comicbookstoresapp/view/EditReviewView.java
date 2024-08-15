@@ -46,6 +46,7 @@ public class EditReviewView extends InnerBaseActivity implements EditReviewContr
 
         presenter = new EditReviewPresenter(this, this);
         reviewId = getIntent().getLongExtra(REVIEW_ID, 0);
+        storeId = getIntent().getLongExtra(STORE_ID, 0);
 
         presenter.getReview(reviewId);
     }
@@ -59,14 +60,13 @@ public class EditReviewView extends InnerBaseActivity implements EditReviewContr
     @Override
     public void showGetReviewErrorDialog(String message) {
         new AlertDialog.Builder(this)
-                .setTitle(R.string.error_user_get)
+                .setTitle(R.string.error_review_get)
                 .setMessage(message)
                 .setPositiveButton(R.string.ok, null)
                 .show();
     }
 
     private void setupInputFields() {
-        storeId = review.getStoreId();
         userId = prefs.getLong(PREFERENCES_ID, 0);
         etContent = findViewById(R.id.edit_review_content);
         etTitle = findViewById(R.id.edit_review_title);
@@ -109,7 +109,7 @@ public class EditReviewView extends InnerBaseActivity implements EditReviewContr
     }
 
     public void navigateToStoreDetails() {
-        Intent intent = new Intent(this, StoresMapView.class);
+        Intent intent = new Intent(this, StoreDetailsView.class);
         intent.putExtra(STORE_ID, storeId);
         startActivity(intent);
         finish();

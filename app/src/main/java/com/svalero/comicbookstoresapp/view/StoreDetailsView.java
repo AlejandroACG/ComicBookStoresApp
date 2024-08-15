@@ -26,8 +26,8 @@ import com.svalero.comicbookstoresapp.util.InnerBaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsContract.View {
-    private Long id;
+public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsContract.View, ReviewAdapter.OnReviewActionListener {
+    private Long storeId;
     private ReviewAdapter adapter;
     private StoreDetailsPresenter presenter;
     private TextView tvName;
@@ -59,8 +59,8 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         reviews = new ArrayList<>();
         presenter = new StoreDetailsPresenter(this);
 
-        id = getIntent().getLongExtra(STORE_ID, 0);
-        presenter.getStore(id);
+        storeId = getIntent().getLongExtra(STORE_ID, 0);
+        presenter.getStore(storeId);
     }
 
     private void setUpElements() {
@@ -116,7 +116,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new ReviewAdapter(reviews, user);
+        adapter = new ReviewAdapter(reviews, user, this);
         recyclerView.setAdapter(adapter);
         if (reviews != null) {
             adapter.notifyDataSetChanged();
@@ -134,22 +134,25 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
 
     public void addReview(View view) {
         Intent intent = new Intent(this, AddReviewView.class);
-        intent.putExtra(STORE_ID, id);
+        intent.putExtra(STORE_ID, storeId);
         startActivity(intent);
     }
 
-    public void navigateToEditReview(View view) {
+    @Override
+    public void onEditReview(Long reviewId) {
         Intent intent = new Intent(this, EditReviewView.class);
-        intent.putExtra(REVIEW_ID, (Long) view.getTag());
+        intent.putExtra(REVIEW_ID, reviewId);
+        intent.putExtra(STORE_ID, storeId);
         startActivity(intent);
     }
 
-    public void deleteReview(View view) {
+    @Override
+    public void onDeleteReview(Long reviewId) {
         new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.delete_dialog_review))
                 .setMessage(R.string.submit_delete_review)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
-                    presenter.deleteReview((Long) view.getTag());
+                    presenter.deleteReview(reviewId);
                 })
                 .setNegativeButton(getString(R.string.cancel), null)
                 .show();
@@ -177,7 +180,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
 
     private void navigateToStoreDetails() {
         Intent intent = new Intent(this, StoreDetailsView.class);
-        intent.putExtra(STORE_ID, id);
+        intent.putExtra(STORE_ID, storeId);
         finish();
         startActivity(intent);
     }
