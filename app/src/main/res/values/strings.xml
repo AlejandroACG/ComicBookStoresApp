@@ -27,6 +27,7 @@
     <string name="error_user_get">Error fetching user data</string>
     <string name="error_review_get">Error fetching review data</string>
     <string name="error_stores_get">Error fetching stores data</string>
+    <string name="error">Error</string>
     <string name="gps_cannot_be_accessed">GPS cannot be accessed</string>
     <string name="unable_to_retrieve_location">Unable to retrieve location</string>
     <string name="location_permission_not_granted">Location permission not granted</string>

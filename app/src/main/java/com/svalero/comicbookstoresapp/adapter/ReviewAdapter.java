@@ -1,8 +1,5 @@
 package com.svalero.comicbookstoresapp.adapter;
 
-import static com.svalero.comicbookstoresapp.util.Constants.REVIEW_ID;
-
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.domain.Review;
 import com.svalero.comicbookstoresapp.domain.User;
-import com.svalero.comicbookstoresapp.view.EditReviewView;
-import com.svalero.comicbookstoresapp.view.StoreDetailsView;
-
 import java.util.List;
 import java.util.Objects;
 

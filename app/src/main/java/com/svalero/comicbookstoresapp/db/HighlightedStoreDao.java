@@ -17,7 +17,4 @@ public interface HighlightedStoreDao {
 
     @Delete
     void delete(HighlightedStore highlightedStore);
-
-    @Query("SELECT EXISTS(SELECT 1 FROM highlighted_store WHERE id = :id LIMIT 1)")
-    boolean existsById(Long id);
 }

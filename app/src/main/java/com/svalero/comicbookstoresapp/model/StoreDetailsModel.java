@@ -137,9 +137,7 @@ public class StoreDetailsModel implements StoreDetailsContract.Model {
             try {
                 db.highlightedStoreDao().upsert(highlightedStore);
 
-                new Handler(Looper.getMainLooper()).post(() -> {
-                    listener.onUpsertHighlightedStoreSuccess(highlightedStore);
-                });
+                new Handler(Looper.getMainLooper()).post(() -> listener.onUpsertHighlightedStoreSuccess(highlightedStore));
             } catch (Exception e) {
                 new Handler(Looper.getMainLooper()).post(listener::onUpsertHighlightedStoreError);
             }
