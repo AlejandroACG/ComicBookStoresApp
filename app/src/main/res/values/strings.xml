@@ -53,4 +53,13 @@
     <string name="title">Title</string>
     <string name="content">Content</string>
     <string name="post">Post</string>
+    <string name="favorite">Favorite</string>
+    <string name="hated">Hated</string>
+    <string name="indifferent">Indifferent</string>
+    <string name="set_as_favorite">" set as Favorite"</string>
+    <string name="set_as_hated">" set as Hated"</string>
+    <string name="error_modifying_the_store">Error modifying the store</string>
+    <string name="set_as_indifferent">" set as indifferent"</string>
+    <string name="configuration_changed">Configuration modified</string>
+    <string name="store_configuration_couldn_t_be_modified">Configuration couldn\'t be modified</string>
 </resources>

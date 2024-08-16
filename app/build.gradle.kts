@@ -40,4 +40,6 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.android)
     implementation(libs.play.services.location)
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
 }

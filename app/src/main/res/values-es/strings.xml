@@ -54,4 +54,13 @@
     <string name="delete_dialog_review">Eliminar</string>
     <string name="submit_delete_review">¿Eliminar reseña?</string>
     <string name="error_review_delete">No se pudo eliminar la reseña</string>
+    <string name="favorite">Favorita</string>
+    <string name="hated">Detestada</string>
+    <string name="indifferent">Indiferente</string>
+    <string name="set_as_favorite">" marcado como favorita"</string>
+    <string name="set_as_hated">" marcado como detestada"</string>
+    <string name="error_modifying_the_store">Error modificando la tienda</string>
+    <string name="set_as_indifferent">" marcado como indiferente"</string>
+    <string name="configuration_changed">Configuración modificada</string>
+    <string name="store_configuration_couldn_t_be_modified">No se pudo modificar la configuración</string>
 </resources>

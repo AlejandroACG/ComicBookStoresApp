@@ -51,12 +51,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
         holder.btnEdit.setOnClickListener(v -> {
             Long reviewId = (Long) holder.itemView.getTag();
-            listener.onEditReview(reviewId); // Llama al método en la View
+            listener.onEditReview(reviewId);
         });
 
         holder.btnDelete.setOnClickListener(v -> {
             Long reviewId = (Long) holder.itemView.getTag();
-            listener.onDeleteReview(reviewId); // Llama al método en la View
+            listener.onDeleteReview(reviewId);
         });
 
         if (user.getStoreReviews() != null ) {

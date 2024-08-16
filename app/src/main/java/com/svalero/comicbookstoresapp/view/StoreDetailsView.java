@@ -36,6 +36,9 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
     private TextView tvPhone;
     private TextView tvWebsite;
     private TextView tvEmail;
+    private Button btnFavorite;
+    private Button btnHated;
+    private Button btnIndifferent;
     private Button btnAddReview;
     private List<Review> reviews;
 
@@ -58,7 +61,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
 
         setUpElements();
         reviews = new ArrayList<>();
-        presenter = new StoreDetailsPresenter(this);
+        presenter = new StoreDetailsPresenter(this, this);
 
         storeId = getIntent().getLongExtra(STORE_ID, 0);
         presenter.getStore(storeId);
@@ -70,16 +73,11 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         tvPhone = findViewById(R.id.store_phone);
         tvWebsite = findViewById(R.id.store_website);
         tvEmail = findViewById(R.id.store_email);
+        btnFavorite = findViewById(R.id.btn_set_favorite);
+        btnHated = findViewById(R.id.btn_set_hated);
+        btnIndifferent = findViewById(R.id.btn_set_indifferent);
         btnAddReview = findViewById(R.id.btn_add_review);
-    }
-
-    @Override
-    public void showLoadReviewsError(String message) {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.error_loading_reviews)
-                .setMessage(message)
-                .setPositiveButton(R.string.ok, null)
-                .show();
+        switchButtons(true);
     }
 
     @Override
@@ -203,5 +201,66 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         intent.putExtra(STORE_ID, storeId);
         finish();
         startActivity(intent);
+    }
+
+    public void setFavorite(View view) {
+        switchButtons(false);
+        presenter.upsertHighlightedStore(store, true);
+    }
+
+    public void setHated(View view) {
+        switchButtons(false);
+        presenter.upsertHighlightedStore(store, false);
+    }
+
+    @Override
+    public void showUpsertHighlightedStoreSuccessDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.configuration_changed)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+        switchButtons(true);
+    }
+
+    @Override
+    public void showUpsertHighlightedStoreErrorDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.store_configuration_couldn_t_be_modified)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+        switchButtons(true);
+    }
+
+    public void setIndifferent(View view) {
+        switchButtons(false);
+        presenter.deleteHighlightedStore(store);
+    }
+
+    @Override
+    public void showDeleteHighlightedStoreSuccessDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.configuration_changed)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+        switchButtons(true);
+    }
+
+    @Override
+    public void showDeleteHighlightedStoreErrorDialog(String message) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.store_configuration_couldn_t_be_modified)
+                .setMessage(message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+        switchButtons(true);
+    }
+
+    private void switchButtons(Boolean isEnabled) {
+        btnFavorite.setEnabled(isEnabled);
+        btnHated.setEnabled(isEnabled);
+        btnIndifferent.setEnabled(isEnabled);
     }
 }

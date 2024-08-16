@@ -1,23 +1,35 @@
-package com.svalero.comicbookstoresapp.domain;
+package com.svalero.comicbookstoresapp.db;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-public class Store {
+@Entity(tableName = "highlighted_store")
+public class HighlightedStore {
+    @PrimaryKey(autoGenerate = true)
     private Long id;
-    private List<Review> storeReviews = new ArrayList<>();
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "address")
     private String address;
+    @ColumnInfo(name = "latitude")
     private Float latitude;
+    @ColumnInfo(name = "longitude")
     private Float longitude;
+    @ColumnInfo(name = "phone")
     private String phone;
+    @ColumnInfo(name = "email")
     private String email;
+    @ColumnInfo(name = "website")
     private String website;
+    @ColumnInfo(name = "is_good")
+    private Boolean isGood;
 
-    public Store(Long id, List<Review> storeReviews, String name, String address, Float latitude, Float longitude,
-                 String phone, String email, String website) {
+    public HighlightedStore() {}
+
+    public HighlightedStore(Long id, String name, String address, Float latitude, Float longitude, String phone,
+                            String email, String website, Boolean isGood) {
         this.id = id;
-        this.storeReviews = storeReviews;
         this.name = name;
         this.address = address;
         this.latitude = latitude;
@@ -25,6 +37,7 @@ public class Store {
         this.phone = phone;
         this.email = email;
         this.website = website;
+        this.isGood = isGood;
     }
 
     public Long getId() {
@@ -33,14 +46,6 @@ public class Store {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Review> getStoreReviews() {
-        return storeReviews;
-    }
-
-    public void setStoreReviews(List<Review> storeReviews) {
-        this.storeReviews = storeReviews;
     }
 
     public String getName() {
@@ -97,5 +102,13 @@ public class Store {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public Boolean getGood() {
+        return isGood;
+    }
+
+    public void setGood(Boolean good) {
+        isGood = good;
     }
 }

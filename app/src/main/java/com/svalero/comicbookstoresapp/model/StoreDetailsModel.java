@@ -1,5 +1,8 @@
 package com.svalero.comicbookstoresapp.model;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import com.google.gson.Gson;
 import com.svalero.comicbookstoresapp.api.ReviewApi;
@@ -9,16 +12,30 @@ import com.svalero.comicbookstoresapp.api.StoreApiInterface;
 import com.svalero.comicbookstoresapp.api.UserApi;
 import com.svalero.comicbookstoresapp.api.UserApiInterface;
 import com.svalero.comicbookstoresapp.contract.StoreDetailsContract;
+import com.svalero.comicbookstoresapp.db.AppDatabase;
+import com.svalero.comicbookstoresapp.db.DatabaseClient;
+import com.svalero.comicbookstoresapp.db.HighlightedStore;
 import com.svalero.comicbookstoresapp.domain.ApiError;
 import com.svalero.comicbookstoresapp.domain.Store;
 import com.svalero.comicbookstoresapp.domain.User;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class StoreDetailsModel implements StoreDetailsContract.Model {
+    private AppDatabase db;
+    private ExecutorService executor;
+
+
+    public StoreDetailsModel(Context context) {
+        this.db = DatabaseClient.getInstance(context).getAppDatabase();
+        this.executor = Executors.newSingleThreadExecutor();
+    }
+
     @Override
     public void getUser(Long id, OnGetUserListener listener) {
         UserApiInterface api = UserApi.buildInstance();
@@ -110,6 +127,34 @@ public class StoreDetailsModel implements StoreDetailsContract.Model {
             public void onFailure(Call<Void> call, Throwable t) {
                 Log.e("deleteReview", Objects.requireNonNull(t.getMessage()));
                 listener.onDeleteReviewError("");
+            }
+        });
+    }
+
+    @Override
+    public void upsertHighlightedStore(HighlightedStore highlightedStore, OnUpsertHighlightedStoreListener listener) {
+        executor.execute(() -> {
+            try {
+                db.highlightedStoreDao().upsert(highlightedStore);
+
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    listener.onUpsertHighlightedStoreSuccess(highlightedStore);
+                });
+            } catch (Exception e) {
+                new Handler(Looper.getMainLooper()).post(listener::onUpsertHighlightedStoreError);
+            }
+        });
+    }
+
+    @Override
+    public void deleteHighlightedStore(HighlightedStore highlightedStore, OnDeleteHighlightedStoreListener listener) {
+        executor.execute(() -> {
+            try {
+                db.highlightedStoreDao().delete(highlightedStore);
+
+                new Handler(Looper.getMainLooper()).post(listener::onDeleteHighlightedStoreSuccess);
+            } catch (Exception e) {
+                new Handler(Looper.getMainLooper()).post(listener::onDeleteHighlightedStoreError);
             }
         });
     }

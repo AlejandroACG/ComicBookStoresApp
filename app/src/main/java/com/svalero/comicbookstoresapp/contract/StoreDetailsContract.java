@@ -1,7 +1,9 @@
 package com.svalero.comicbookstoresapp.contract;
 
+import com.svalero.comicbookstoresapp.db.HighlightedStore;
 import com.svalero.comicbookstoresapp.domain.Store;
 import com.svalero.comicbookstoresapp.domain.User;
+import com.svalero.comicbookstoresapp.dto.ReviewDTO;
 
 public interface StoreDetailsContract {
     interface Model {
@@ -22,21 +24,38 @@ public interface StoreDetailsContract {
             void onDeleteReviewError(String message);
         }
         void deleteReview(Long id, StoreDetailsContract.Model.OnDeleteReviewListener listener);
+
+        interface OnUpsertHighlightedStoreListener {
+            void onUpsertHighlightedStoreSuccess(HighlightedStore highlightedStore);
+            void onUpsertHighlightedStoreError();
+        }
+        void upsertHighlightedStore(HighlightedStore highlightedStore, OnUpsertHighlightedStoreListener listener);
+
+        interface OnDeleteHighlightedStoreListener {
+            void onDeleteHighlightedStoreSuccess();
+            void onDeleteHighlightedStoreError();
+        }
+        void deleteHighlightedStore(HighlightedStore highlightedStore, OnDeleteHighlightedStoreListener listener);
     }
 
     interface View {
-        void showLoadReviewsError(String message);
         void loadUser(User user);
         void showGetUserError(String message);
         void setupStore(Store store);
         void showGetStoreError(String message);
         void showDeleteReviewSuccessDialog(String message);
         void showDeleteReviewErrorDialog(String message);
+        void showUpsertHighlightedStoreSuccessDialog(String message);
+        void showUpsertHighlightedStoreErrorDialog(String message);
+        void showDeleteHighlightedStoreSuccessDialog(String message);
+        void showDeleteHighlightedStoreErrorDialog(String message);
     }
 
     interface Presenter {
         void getUser(Long id);
         void getStore(Long id);
         void deleteReview(Long id);
+        void upsertHighlightedStore(Store store, Boolean isGood);
+        void deleteHighlightedStore(Store store);
     }
 }

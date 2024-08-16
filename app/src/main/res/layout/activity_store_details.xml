@@ -28,7 +28,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/store_name" />
 
@@ -39,20 +39,9 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/store_address" />
-
-    <TextView
-        android:id="@+id/store_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/store_website" />
 
     <TextView
         android:id="@+id/store_website"
@@ -61,9 +50,52 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/store_phone" />
+
+    <TextView
+        android:id="@+id/store_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_website" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/review_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_name">
+
+        <Button
+            android:id="@+id/btn_set_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setFavorite"
+            android:text="@string/favorite" />
+
+        <Button
+            android:id="@+id/btn_set_hated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setHated"
+            android:text="@string/hated" />
+
+        <Button
+            android:id="@+id/btn_set_indifferent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setIndifferent"
+            android:text="@string/indifferent" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_add_review"
@@ -79,8 +111,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/review_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="351dp"
+        android:layout_height="428dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
