@@ -19,39 +19,115 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/highlighted_store_name"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#373737"
-            android:textColor="#E9E5E5" />
+            android:background="#0a0000">
 
-        <TextView
-            android:id="@+id/highlighted_store_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#373737"
-            android:textColor="#E9E5E5" />
+            <TextView
+                android:id="@+id/highlighted_store_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#373737"
+                android:textColor="#E9E5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/highlighted_store_phone"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#373737"
-            android:textColor="#E9E5E5" />
+            android:background="#0a0000">
 
-        <TextView
-            android:id="@+id/highlighted_store_website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#373737"
-            android:textColor="#E9E5E5" />
+            <TextView
+                android:id="@+id/highlighted_store_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#373737"
+                android:textColor="#E9E5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/highlighted_store_email"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#373737"
-            android:textColor="#E9E5E5" />
+            android:background="#0a0000">
+
+            <TextView
+                android:id="@+id/highlighted_store_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#373737"
+                android:textColor="#E9E5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0a0000">
+
+            <TextView
+                android:id="@+id/highlighted_store_website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#373737"
+                android:textColor="#E9E5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0a0000">
+
+            <TextView
+                android:id="@+id/highlighted_store_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#373737"
+                android:textColor="#E9E5E5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

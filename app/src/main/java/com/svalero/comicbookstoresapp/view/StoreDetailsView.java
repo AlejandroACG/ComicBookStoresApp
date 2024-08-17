@@ -77,7 +77,8 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         btnHated = findViewById(R.id.btn_set_hated);
         btnIndifferent = findViewById(R.id.btn_set_indifferent);
         btnAddReview = findViewById(R.id.btn_add_review);
-        switchButtons(true);
+
+        visibilityButtons(false);
     }
 
     @Override
@@ -92,6 +93,9 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
         tvPhone.setText(store.getPhone());
         tvWebsite.setText(store.getWebsite());
         tvEmail.setText(store.getEmail());
+
+        visibilityButtons(true);
+        enableButtons(true);
 
         presenter.getUser(prefs.getLong(PREFERENCES_ID, 0));
 
@@ -204,12 +208,12 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
     }
 
     public void setFavorite(View view) {
-        switchButtons(false);
+        enableButtons(false);
         presenter.upsertHighlightedStore(store, true);
     }
 
     public void setHated(View view) {
-        switchButtons(false);
+        enableButtons(false);
         presenter.upsertHighlightedStore(store, false);
     }
 
@@ -220,7 +224,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
                 .setMessage(message)
                 .setPositiveButton(R.string.ok, null)
                 .show();
-        switchButtons(true);
+        enableButtons(true);
     }
 
     @Override
@@ -230,11 +234,11 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
                 .setMessage(message)
                 .setPositiveButton(R.string.ok, null)
                 .show();
-        switchButtons(true);
+        enableButtons(true);
     }
 
     public void setIndifferent(View view) {
-        switchButtons(false);
+        enableButtons(false);
         presenter.deleteHighlightedStore(store);
     }
 
@@ -245,7 +249,7 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
                 .setMessage(message)
                 .setPositiveButton(R.string.ok, null)
                 .show();
-        switchButtons(true);
+        enableButtons(true);
     }
 
     @Override
@@ -255,10 +259,22 @@ public class StoreDetailsView extends InnerBaseActivity implements StoreDetailsC
                 .setMessage(message)
                 .setPositiveButton(R.string.ok, null)
                 .show();
-        switchButtons(true);
+        enableButtons(true);
     }
 
-    private void switchButtons(Boolean isEnabled) {
+    private void visibilityButtons(Boolean isVisible) {
+        if (isVisible) {
+            btnFavorite.setVisibility(View.VISIBLE);
+            btnHated.setVisibility(View.VISIBLE);
+            btnIndifferent.setVisibility(View.VISIBLE);
+        } else {
+            btnFavorite.setVisibility(View.INVISIBLE);
+            btnHated.setVisibility(View.INVISIBLE);
+            btnIndifferent.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void enableButtons(Boolean isEnabled) {
         btnFavorite.setEnabled(isEnabled);
         btnHated.setEnabled(isEnabled);
         btnIndifferent.setEnabled(isEnabled);

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.view.EditUserView;
+import com.svalero.comicbookstoresapp.view.HighlightedStoreListView;
 import com.svalero.comicbookstoresapp.view.MainView;
 import com.svalero.comicbookstoresapp.view.StoresMapView;
 
@@ -47,6 +48,9 @@ public class InnerBaseActivity extends BaseActivity {
             finish();
         } else if (item.getItemId() == R.id.action_profile) {
             Intent intent = new Intent(this, EditUserView.class);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.action_highlights) {
+            Intent intent = new Intent(this, HighlightedStoreListView.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

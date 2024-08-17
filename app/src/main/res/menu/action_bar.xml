@@ -14,7 +14,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_highlights"
-        android:icon="@android:drawable/ic_dialog_alert"
+        android:icon="@android:drawable/ic_input_get"
         android:title="Item"
         app:showAsAction="always" />
     <item

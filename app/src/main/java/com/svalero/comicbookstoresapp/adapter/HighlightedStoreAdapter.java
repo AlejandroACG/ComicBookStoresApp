@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.svalero.comicbookstoresapp.R;
 import com.svalero.comicbookstoresapp.db.HighlightedStore;
@@ -32,9 +33,11 @@ public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedSto
         HighlightedStore highlightedStore = highlightedStores.get(position);
 
         if (highlightedStore.getGood()) {
-            holder.llHighlightedStore.setBackgroundColor(Color.parseColor("#94de00"));
-        } else {
-            holder.llHighlightedStore.setBackgroundColor(Color.parseColor("#0a0000"));
+            holder.clName.setBackgroundColor(Color.parseColor("#fcba03"));
+            holder.clAddress.setBackgroundColor(Color.parseColor("#fcba03"));
+            holder.clPhone.setBackgroundColor(Color.parseColor("#fcba03"));
+            holder.clWebsite.setBackgroundColor(Color.parseColor("#fcba03"));
+            holder.clEmail.setBackgroundColor(Color.parseColor("#fcba03"));
         }
         holder.tvName.setText(highlightedStore.getName());
         holder.tvAddress.setText(highlightedStore.getAddress());
@@ -49,11 +52,15 @@ public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedSto
     }
 
     public class HighlightedStoreHolder extends RecyclerView.ViewHolder {
-        public LinearLayout llHighlightedStore;
+        public ConstraintLayout clName;
         public TextView tvName;
+        public ConstraintLayout clAddress;
         public TextView tvAddress;
+        public ConstraintLayout clPhone;
         public TextView tvPhone;
+        public ConstraintLayout clWebsite;
         public TextView tvWebsite;
+        public ConstraintLayout clEmail;
         public TextView tvEmail;
         public View parentView;
 
@@ -61,11 +68,15 @@ public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedSto
             super(view);
             parentView = view;
 
-            llHighlightedStore = view.findViewById(R.id.highlighted_store_layout);
+            clName = view.findViewById(R.id.constraint_name);
             tvName = view.findViewById(R.id.highlighted_store_name);
+            clAddress = view.findViewById(R.id.constraint_address);
             tvAddress = view.findViewById(R.id.highlighted_store_address);
+            clPhone = view.findViewById(R.id.constraint_phone);
             tvPhone = view.findViewById(R.id.highlighted_store_phone);
+            clWebsite = view.findViewById(R.id.constraint_website);
             tvWebsite = view.findViewById(R.id.highlighted_store_website);
+            clEmail = view.findViewById(R.id.constraint_email);
             tvEmail = view.findViewById(R.id.highlighted_store_email);
         }
     }
