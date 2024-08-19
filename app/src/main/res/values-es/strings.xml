@@ -64,4 +64,6 @@
     <string name="configuration_changed">Configuración modificada</string>
     <string name="store_configuration_couldn_t_be_modified">No se pudo modificar la configuración</string>
     <string name="error">Error</string>
+    <string name="highlighted_stores">Tiendas destacadas</string>
+    <string name="see_hated">Ver detestadas</string>
 </resources>

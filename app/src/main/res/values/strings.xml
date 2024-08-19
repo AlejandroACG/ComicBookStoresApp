@@ -63,4 +63,6 @@
     <string name="set_as_indifferent">" set as indifferent"</string>
     <string name="configuration_changed">Configuration modified</string>
     <string name="store_configuration_couldn_t_be_modified">Configuration couldn\'t be modified</string>
+    <string name="highlighted_stores">Highlighted Stores</string>
+    <string name="see_hated">See Hated</string>
 </resources>

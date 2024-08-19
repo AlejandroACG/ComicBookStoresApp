@@ -15,9 +15,11 @@ import java.util.List;
 
 public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedStoreAdapter.HighlightedStoreHolder> {
     private final List<HighlightedStore> highlightedStores;
+    private Boolean showHated;
 
-    public HighlightedStoreAdapter(List<HighlightedStore> highlightedStores) {
+    public HighlightedStoreAdapter(List<HighlightedStore> highlightedStores, Boolean isHated) {
         this.highlightedStores = highlightedStores;
+        this.showHated = isHated;
     }
 
     @NonNull
@@ -32,18 +34,22 @@ public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedSto
     public void onBindViewHolder(@NonNull HighlightedStoreHolder holder, int position) {
         HighlightedStore highlightedStore = highlightedStores.get(position);
 
-        if (highlightedStore.getGood()) {
-            holder.clName.setBackgroundColor(Color.parseColor("#fcba03"));
-            holder.clAddress.setBackgroundColor(Color.parseColor("#fcba03"));
-            holder.clPhone.setBackgroundColor(Color.parseColor("#fcba03"));
-            holder.clWebsite.setBackgroundColor(Color.parseColor("#fcba03"));
-            holder.clEmail.setBackgroundColor(Color.parseColor("#fcba03"));
+        if (showHated || highlightedStore.getGood()) {
+            if (highlightedStore.getGood()) {
+                holder.clName.setBackgroundColor(Color.parseColor("#fcba03"));
+                holder.clAddress.setBackgroundColor(Color.parseColor("#fcba03"));
+                holder.clPhone.setBackgroundColor(Color.parseColor("#fcba03"));
+                holder.clWebsite.setBackgroundColor(Color.parseColor("#fcba03"));
+                holder.clEmail.setBackgroundColor(Color.parseColor("#fcba03"));
+            }
+            holder.tvName.setText(highlightedStore.getName());
+            holder.tvAddress.setText(highlightedStore.getAddress());
+            holder.tvPhone.setText(highlightedStore.getPhone());
+            holder.tvWebsite.setText(highlightedStore.getWebsite());
+            holder.tvEmail.setText(highlightedStore.getEmail());
+        } else {
+            holder.llMain.setVisibility(View.GONE);
         }
-        holder.tvName.setText(highlightedStore.getName());
-        holder.tvAddress.setText(highlightedStore.getAddress());
-        holder.tvPhone.setText(highlightedStore.getPhone());
-        holder.tvWebsite.setText(highlightedStore.getWebsite());
-        holder.tvEmail.setText(highlightedStore.getEmail());
     }
 
     @Override
@@ -52,6 +58,7 @@ public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedSto
     }
 
     public class HighlightedStoreHolder extends RecyclerView.ViewHolder {
+        public LinearLayout llMain;
         public ConstraintLayout clName;
         public TextView tvName;
         public ConstraintLayout clAddress;
@@ -68,6 +75,7 @@ public class HighlightedStoreAdapter extends RecyclerView.Adapter<HighlightedSto
             super(view);
             parentView = view;
 
+            llMain = view.findViewById(R.id.highlighted_store_layout);
             clName = view.findViewById(R.id.constraint_name);
             tvName = view.findViewById(R.id.highlighted_store_name);
             clAddress = view.findViewById(R.id.constraint_address);

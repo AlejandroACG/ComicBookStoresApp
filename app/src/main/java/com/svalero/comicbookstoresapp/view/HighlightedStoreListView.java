@@ -1,6 +1,8 @@
 package com.svalero.comicbookstoresapp.view;
 
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.graphics.Insets;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HighlightedStoreListView extends InnerBaseActivity implements HighlightedStoreListContract.View {
+    private CheckBox cbHated;
     private HighlightedStoreAdapter adapter;
     private HighlightedStoreListPresenter presenter;
     private List<HighlightedStore> highlightedStores;
@@ -39,9 +42,25 @@ public class HighlightedStoreListView extends InnerBaseActivity implements Highl
     protected void onStart() {
         super.onStart();
 
+        cbHated = findViewById(R.id.check_box_hated);
+        cbHated.setEnabled(false);
+        cbHated.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                launchGetHighlightedStores();
+            }
+        });
+
+        recyclerView = findViewById(R.id.highlighted_store_list);
+        recyclerView.setHasFixedSize(true);
+
         highlightedStores = new ArrayList<>();
         presenter = new HighlightedStoreListPresenter(this, this);
+        launchGetHighlightedStores();
+    }
 
+    private void launchGetHighlightedStores() {
+        cbHated.setEnabled(false);
         presenter.getHighlightedStores();
     }
 
@@ -50,16 +69,15 @@ public class HighlightedStoreListView extends InnerBaseActivity implements Highl
         this.highlightedStores.clear();
         this.highlightedStores.addAll(highlightedStores);
 
-        recyclerView = findViewById(R.id.highlighted_store_list);
-        recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new HighlightedStoreAdapter(highlightedStores);
+        adapter = new HighlightedStoreAdapter(highlightedStores, cbHated.isChecked());
         recyclerView.setAdapter(adapter);
         if (highlightedStores != null) {
             adapter.notifyDataSetChanged();
         }
+        cbHated.setEnabled(true);
     }
 
     @Override
